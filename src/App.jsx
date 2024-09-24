@@ -4,7 +4,7 @@ function App() {
 
   return (
     <div>
-      Chick&apos;s Table!!!
+      Chick&apos;s Table!!
     </div>
   )
 }
