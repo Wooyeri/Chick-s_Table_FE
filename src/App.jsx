@@ -5,6 +5,7 @@ function App() {
   return (
     <div>
       Chick&apos;s Table!!
+      ?
     </div>
   )
 }
