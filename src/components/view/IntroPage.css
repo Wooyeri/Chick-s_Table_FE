@@ -1,0 +1,31 @@
+body {
+  background-color: #E7E7E7; /* 원하는 색상으로 변경 */
+}
+
+.text-container {
+  margin-top: 16%;
+  margin-left: 10%;
+}
+
+.main-title {
+  font-size: 58px;
+  margin-bottom: 32px;
+}
+
+.sub-title {
+  font-size: 20px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.bold-green {
+  font-weight: bold;
+  color: #117945;
+}
+
+.line-break {
+  display: block; /* span 태그는 inline 요소이므로 block으로 변경 */
+  margin-bottom: 8px; /* 원하는 마진 값으로 조정 */
+}
