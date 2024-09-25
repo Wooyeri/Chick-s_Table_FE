@@ -1,6 +1,6 @@
 import React from 'react';
 import './HeaderComponent.css';
-import ChickLoge from '../../assets/chick.png';
+import ChickLoge from '../../assets/chick_text.png';
 import SearchIcon from '../../assets/search-icon.png';
 import ChatbotIcon from '../../assets/chatbot-icon.png';
 import Dropdown from '../../assets/dropdown-icon.png';
