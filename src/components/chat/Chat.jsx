@@ -1,7 +1,13 @@
 import PropTypes from 'prop-types';
 
 export default function Chat({ role, content }){
-    const styles = {
+    const containerStyles = {
+        display: "flex",
+        width: "100%",
+        paddingBottom: "1.5rem",
+        justifyContent: role === 'assistant' ?  "left" : "right"
+    }
+    const bubbleStyles = {
         'systemToShow': {
             width: 'fit-content',
             padding: '2rem',
@@ -28,8 +34,10 @@ export default function Chat({ role, content }){
     }
 
     return(
-        <div style={styles[role]}>
-            {content}
+        <div style={containerStyles}>
+            <div style={{...bubbleStyles[role]}}>
+                {content}
+            </div>
         </div>
     )
 }

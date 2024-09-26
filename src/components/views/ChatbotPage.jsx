@@ -42,13 +42,15 @@ export default function ChatbotPage(){
     }, [])
 
     return(
-        <div>
-            <ChatList chatList={chatList} onProgress={onProgress} />
-            <div className="chat-input-area">
-                <form onSubmit={handleSubmit}>
-                    <input placeholder="챗봇에게 보낼 메세지를 입력하세요." onChange={handleChange}></input>
-                    <button type="submit"><img src={arrowBtn} /></button>
-                </form>
+        <div className="chatbot-page">
+            <div className="chatbot-container">
+                <ChatList chatList={chatList} onProgress={onProgress} />
+                <div className="chat-input-area">
+                    <form onSubmit={handleSubmit}>
+                        <input placeholder="챗봇에게 보낼 메세지를 입력하세요." onChange={handleChange}></input>
+                        <button type="submit"><img src={arrowBtn} /></button>
+                    </form>
+                </div>
             </div>
         </div>
     )
