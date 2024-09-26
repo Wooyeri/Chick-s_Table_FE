@@ -2,6 +2,9 @@ import { useEffect, useState } from "react"
 import ChatList from "@/components/chat/ChatList";
 import { getModelResponse } from "@/utils/chat";
 
+import arrowBtn from "@/assets/images/arrowButton.svg"
+import "./ChatbotPage.css"
+
 export default function ChatbotPage(){
     const [chatList, setChatList] = useState([]);
     const [chatInput, setChatInput] = useState('');
@@ -44,7 +47,7 @@ export default function ChatbotPage(){
             <div className="chat-input-area">
                 <form onSubmit={handleSubmit}>
                     <input placeholder="챗봇에게 보낼 메세지를 입력하세요." onChange={handleChange}></input>
-                    <button type="submit">&lt;-</button>
+                    <button type="submit"><img src={arrowBtn} /></button>
                 </form>
             </div>
         </div>
