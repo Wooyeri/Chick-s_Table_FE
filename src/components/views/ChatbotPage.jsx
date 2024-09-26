@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
-import ChatList from "@/chat/ChatList";
+import ChatList from "@/components/chat/ChatList";
+import { getModelResponse } from "@/utils/chat";
 
 export default function ChatbotPage(){
     const [chatList, setChatList] = useState([]);
     const [chatInput, setChatInput] = useState('');
+    const [onProgress, setOnProgress] = useState(false);
     const addChat = (role, content) => {
         setChatList([...chatList, {role, content}]);
     }
@@ -12,9 +14,21 @@ export default function ChatbotPage(){
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        setChatInput(chatInput.trim());
-        if(chatInput) addChat(chatInput);
-        //Todo: 
+        const userInput = chatInput.trim();
+        setChatInput('');
+        console.log(chatInput)
+        if(userInput) {
+            setOnProgress(true);
+            getModelResponse(chatList).then(res =>{
+                addChat("user", userInput);
+                addChat("assistant", res.message.content);
+                setOnProgress(false);
+            })
+            .catch(choice => {
+                console.log(choice);
+                setOnProgress(false);
+            })
+        }
     }
     useEffect(()=>{
         //Todo: Get user information from the server and refine it
@@ -22,11 +36,11 @@ export default function ChatbotPage(){
         const userHealthInfoToShow = "나의 건강상태에 맞는 레시피를 추천해줘. 나는 고혈압이 있어."
         addChat('system', userHealthInfo);
         addChat('systemToShow', userHealthInfoToShow);
-    })
+    }, [])
 
     return(
         <div>
-            <ChatList chatList={chatList} />
+            <ChatList chatList={chatList} onProgress={onProgress} />
             <div className="chat-input-area">
                 <form onSubmit={handleSubmit}>
                     <input placeholder="챗봇에게 보낼 메세지를 입력하세요." onChange={handleChange}></input>

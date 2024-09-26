@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import Chat from './Chat';
+import LoadingChat from './LoadingChat';
 
-export default function ChatList({chatList}){
+export default function ChatList({ chatList, onProgress }){
     return(
         <div className='chat-list'>
             {chatList.map((chat, idx) => {
@@ -9,9 +10,11 @@ export default function ChatList({chatList}){
                 if (chat.role == 'system') return;
                 return <Chat key={idx} role={chat.role} content={chat.content} />
                 })}
+            {onProgress? <LoadingChat /> : <></>}
         </div>
     )
 }
 ChatList.propTypes = {
-    chatList: PropTypes.array
+    chatList: PropTypes.array,
+    onProgress: PropTypes.bool
 };
