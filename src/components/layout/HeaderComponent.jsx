@@ -21,9 +21,9 @@ const HeaderComponent = () => {
             <li className="header-item"><img src={SearchIcon} alt="Search Icon" className="search-icon" />레시피 검색</li>
           </Link>
           <div class="vertical-bar"></div>
-          <Link to="/chatbot">
+          {/* <Link to="/chatbot"> */}
             <li className="header-item"><img src={ChatbotIcon} alt="Chatbot Icon" className="chatbot-icon" />챗봇과 대화</li>          
-          </Link>
+          {/* </Link> */}
           <div class="vertical-bar"></div>
           <li className="dropdown-container">
             <img src={Dropdown} alt="Dropdown" className="dropdown-icon" />

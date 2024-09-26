@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HeaderComponent from './components/layout/HeaderComponent';
 import Intro from "./components/view/IntroPage";
 import Search from "./components/view/RecipeSearchPage";
-import Chatbot from "./components/view/ChatbotPage";
+// import Chatbot from "./components/view/ChatbotPage";
 
 function App() {
 
@@ -25,7 +25,7 @@ function App() {
           <Route path="/recipesearch" element={<Search />}></Route>
 
           {/* // http://localhost:3000/chatbot */}
-          <Route path="/chatbot" element={<Chatbot />}></Route>
+          {/* <Route path="/chatbot" element={<Chatbot />}></Route> */}
 
           {/* // http://localhost:3000/mypage */}
           {/* <Route path="/mypage" element={<MyPage />}></Route> */}
