@@ -14,6 +14,7 @@ const Intro = () => {
                 <span className='line-break'></span>
                 사용자 맞춤 식단 레시피를 제공합니다.
             </div>
+            <button className="start-btn">시작하기</button>
         </div>
     );
 };
