@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import ChatList from "@/components/chat/ChatList";
-import { getModelResponse } from "@/utils/chat";
+import { startChat, getModelResponse } from "@/utils/chat";
 
 import arrowBtn from "@/assets/images/arrowButton.svg"
 import "./ChatbotPage.css"
@@ -9,8 +9,10 @@ export default function ChatbotPage(){
     const [chatList, setChatList] = useState([]);
     const [chatInput, setChatInput] = useState('');
     const [onProgress, setOnProgress] = useState(false);
-    const addChat = (role, content) => {
-        setChatList([...chatList, {role, content}]);
+    const addChat = (role, text) => {
+        console.log(chatList)
+        setChatList([...chatList, {role, parts: [{ text }]}]);
+        console.log(chatList)
     }
     const handleChange = (e) =>{
         setChatInput(e.target.value);
@@ -19,27 +21,31 @@ export default function ChatbotPage(){
         e.preventDefault();
         const userInput = chatInput.trim();
         setChatInput('');
-        console.log(chatInput)
         if(userInput) {
             setOnProgress(true);
-            getModelResponse(chatList).then(res =>{
-                addChat("user", userInput);
-                addChat("assistant", res.message.content);
+            addChat("user", userInput);
+            getModelResponse(userInput).then(res =>{
+                addChat("model", res);
                 setOnProgress(false);
             })
-            .catch(choice => {
-                console.log(choice);
+            .catch(err => {
+                console.log(err);
                 setOnProgress(false);
-            })
+            });
         }
     }
     useEffect(()=>{
         //Todo: Get user information from the server and refine it
-        const userHealthInfo = "당신은 사용자의 건강 상태에 맞는 음식 레시피를 추천해주는 어시스턴트입니다. 사용자는 고혈압이 있습니다.";
-        const userHealthInfoToShow = "나의 건강상태에 맞는 레시피를 추천해줘. 나는 고혈압이 있어."
-        addChat('system', userHealthInfo);
-        addChat('systemToShow', userHealthInfoToShow);
+        const userHealthInfo = "나의 건강상태에 맞추어 내가 원하는 요리 레시피를 추천해줘. 나는 고혈압이 있어."
+        const initialChatList = [
+            {role: 'user', parts: [{ text: userHealthInfo }]},
+        ]
+        setChatList(initialChatList);
+        startChat(initialChatList);
     }, [])
+    useEffect(()=> {
+        console.log(chatList);
+    }, [chatList]);
 
     return(
         <div className="chatbot-page">

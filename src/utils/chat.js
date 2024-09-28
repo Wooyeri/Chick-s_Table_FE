@@ -1,20 +1,20 @@
-import OpenAI from "openai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const openai = new OpenAI({
-    apiKey: import.meta.env.VITE_OPENAI_API_KEY
-    , dangerouslyAllowBrowser: true
-});
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY)
+const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro"});
+export var chat;
 
-export const getModelResponse = async (msgs) => new Promise((resolve, reject) => {
-    const response = openai.chat.completions.create({
-    messages: [msgs.map((msg) => {
-        if (msg.role == 'systemToShow') return;
-        return {role: msg.role, content: msg.content};
-    })],
-    model: "gpt-3.5-turbo"});
+export const startChat = (history) => {
+    if (history) {
+        chat = model.startChat({history});
+    } else {
+        chat = model.startChat();
+    }
+}
 
-    console.log(response);
-
-    if(response.choices && response.choices[0].finish_reason !== "stop") reject(response.choices[0])
-    else resolve(response)
-});
+export const getModelResponse = (sendMsg) => new Promise((resolve, reject) => {
+    console.log(sendMsg)
+    resolve(chat.sendMessage(sendMsg).then(res => {
+        return res.response.text();
+    }).catch(err => reject(console.error(err))));
+})

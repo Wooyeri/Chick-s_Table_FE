@@ -5,10 +5,10 @@ export default function Chat({ role, content }){
         display: "flex",
         width: "100%",
         paddingBottom: "1.5rem",
-        justifyContent: role === 'assistant' ?  "left" : "right"
+        justifyContent: role === 'model' ?  "left" : "right"
     }
     const bubbleStyles = {
-        'systemToShow': {
+        'promptToShow': {
             width: 'fit-content',
             padding: '2rem',
             background: '#21978B',
@@ -24,7 +24,7 @@ export default function Chat({ role, content }){
             borderRadius: '16px 16px 0px 16px',
             color: '#FFFFFF'
         },
-        'assistant': {
+        'model': {
             width: 'fit-content',
             padding: '2rem',
             background: '#6AACA5',
