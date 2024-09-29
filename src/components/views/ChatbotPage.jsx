@@ -10,9 +10,7 @@ export default function ChatbotPage(){
     const [chatInput, setChatInput] = useState('');
     const [onProgress, setOnProgress] = useState(false);
     const addChat = (role, text) => {
-        console.log(chatList)
         setChatList([...chatList, {role, parts: [{ text }]}]);
-        console.log(chatList)
     }
     const handleChange = (e) =>{
         setChatInput(e.target.value);
@@ -25,6 +23,8 @@ export default function ChatbotPage(){
             setOnProgress(true);
             addChat("user", userInput);
             getModelResponse(userInput).then(res =>{
+                console.log(chatList);
+                console.log(res)
                 addChat("model", res);
                 setOnProgress(false);
             })
@@ -36,16 +36,16 @@ export default function ChatbotPage(){
     }
     useEffect(()=>{
         //Todo: Get user information from the server and refine it
-        const userHealthInfo = "나의 건강상태에 맞추어 내가 원하는 요리 레시피를 추천해줘. 나는 고혈압이 있어."
+        const userDisease = '고혈압, 땅콩 알레르기'
+        const userHealthInfo = `내가 말해주는 요리의 레시피를 내 건강 상태에 맞추어 추천해줘. 나는 ${userDisease} 있어.`
+        const userHealthInfoToShow = `나의 건강상태에 맞는 요리 레시피를 추천해줘. 나는 ${userDisease}이(가) 있어.`
         const initialChatList = [
-            {role: 'user', parts: [{ text: userHealthInfo }]},
+            {role: 'prompt', parts: [{ text: userHealthInfo }]},
+            {role: 'promptToShow', parts: [{ text: userHealthInfoToShow }]}
         ]
         setChatList(initialChatList);
         startChat(initialChatList);
-    }, [])
-    useEffect(()=> {
-        console.log(chatList);
-    }, [chatList]);
+    }, []);
 
     return(
         <div className="chatbot-page">

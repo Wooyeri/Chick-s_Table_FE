@@ -27,8 +27,8 @@ export default function Chat({ role, content }){
         'model': {
             width: 'fit-content',
             padding: '2rem',
-            background: '#6AACA5',
-            border: '1px solid rgba(112, 124, 151, 0.25)',
+            background: '#c8d6d5',
+            border: '1px solid rgba(112, 124, 151, 0.2)',
             borderRadius: '16px 16px 16px 0px',
         }
     }
