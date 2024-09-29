@@ -1,8 +1,19 @@
 import PropTypes from 'prop-types';
 import Chat from './Chat';
 import LoadingChat from './LoadingChat';
+import { useEffect } from 'react';
 
 export default function ChatList({ chatList, onProgress }){
+    const scrollToBottom = () => {
+        window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: 'smooth'
+          });
+    }
+    useEffect(() => {
+        scrollToBottom();
+    }, [chatList])
+
     return(
         <div className='chat-list'>
             {chatList.map((chat, idx) => {
