@@ -10,7 +10,7 @@ export default function ChatbotPage(){
     const [chatInput, setChatInput] = useState('');
     const [onProgress, setOnProgress] = useState(false);
     const addChat = (role, text) => {
-        setChatList([...chatList, {role, parts: [{ text }]}]);
+        setChatList(prevChatList => [...prevChatList, {role, parts: [{ text }]}]);
     }
     const handleChange = (e) =>{
         setChatInput(e.target.value);
@@ -24,7 +24,6 @@ export default function ChatbotPage(){
             addChat("user", userInput);
             getModelResponse(userInput).then(res =>{
                 console.log(chatList);
-                console.log(res)
                 addChat("model", res);
                 setOnProgress(false);
             })

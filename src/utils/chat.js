@@ -13,7 +13,6 @@ export const startChat = (history) => {
 }
 
 export const getModelResponse = (sendMsg) => new Promise((resolve, reject) => {
-    console.log(sendMsg)
     resolve(chat.sendMessage(sendMsg).then(res => {
         return res.response.text();
     }).catch(err => reject(console.error(err))));
