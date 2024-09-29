@@ -44,7 +44,15 @@ export default function ChatbotPage(){
             {role: 'promptToShow', parts: [{ text: userHealthInfoToShow }]}
         ]
         setChatList(initialChatList);
-        startChat(initialChatList);
+        startChat(initialChatList
+            .filter(chat => chat.role != 'promptToShow')
+            .map(chat => {
+                if (chat.role == 'prompt'){
+                    const newChat = {...chat, role: 'user'};
+                    return newChat;
+                }
+                else return chat;
+            }))
     }, []);
 
     return(

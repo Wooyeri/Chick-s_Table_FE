@@ -6,16 +6,7 @@ export var chat;
 
 export const startChat = (history) => {
     if (history) {
-        chat = model.startChat({history: history
-            .filter(chat => chat.role != 'promptToShow')
-            .map(chat => {
-                if (chat.role == 'prompt'){
-                    const newChat = {...chat, role: 'user'};
-                    return newChat;
-                }
-                else return chat;
-            })
-        });
+        chat = model.startChat({ history });
     } else {
         chat = model.startChat();
     }
