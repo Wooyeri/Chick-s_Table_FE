@@ -1,21 +1,19 @@
+import { useEffect, useState } from "react"
+import "./chats.css"
 export default function LoadingChat(){
-    const containerStyles = {
-        display: "flex",
-        width: "100%",
-        paddingBottom: "1.5rem",
-        justifyContent: "left"
-    }
-    const bubbleStyle = {
-        width: 'fit-content',
-        padding: '2rem',
-        background: '#c8d6d5',
-        border: '1px solid rgba(112, 124, 151, 0.2)',
-        borderRadius: '16px 16px 16px 0px',
-    }
+    const [mention, setMention] = useState('불러오는 중..')
+    useEffect(() => {
+        setTimeout(() => {
+            if( mention.length == 10) setMention('불러오는 중..');
+            else if (mention.length == 8) setMention('불러오는 중...')
+            else setMention('불러오는 중....')
+        }, 1000)
+    });
     return(
-        <div style={containerStyles}>
-            <div style={bubbleStyle}>
-                불러오는 중..
+        <div className="chat-container model">
+            <div className="bubble model loading">
+                <div className="spinner"></div>
+                <p>{mention}</p>
             </div>
         </div>
     )
