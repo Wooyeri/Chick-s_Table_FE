@@ -23,12 +23,11 @@ export default function ChatbotPage(){
             setOnProgress(true);
             addChat("user", userInput);
             getModelResponse(userInput).then(res =>{
-                console.log(chatList);
                 addChat("model", res);
                 setOnProgress(false);
             })
             .catch(err => {
-                console.log(err);
+                console.err(err);
                 setOnProgress(false);
             });
         }

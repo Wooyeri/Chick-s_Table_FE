@@ -14,6 +14,7 @@ export const startChat = (history) => {
 
 export const getModelResponse = (sendMsg) => new Promise((resolve, reject) => {
     resolve(chat.sendMessage(sendMsg).then(res => {
-        return res.response.text();
+        if(res.response && res.response.text) return res.response.text();
+        else(reject('Wrong response.'))
     }).catch(err => reject(console.error(err))));
 })
