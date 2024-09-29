@@ -1,14 +1,40 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { SaveContext } from "@/common/saveContext";
 import ChatList from "@/components/chat/ChatList";
+import SaveModal from "@/components/chat/SaveModal";
+import { PropTypes } from 'prop-types';
 import { startChat, getModelResponse } from "@/utils/chat";
 
 import arrowBtn from "@/assets/images/arrowButton.svg"
 import "./ChatbotPage.css"
 
+function ContextProvider ({ children }) {
+    const [showSaveModal, setShowSaveModal] = useState(false);
+    const [saveModalContent, setSaveModalContent] = useState('');
+
+    return(
+        <SaveContext.Provider value={{showSaveModal, setShowSaveModal, saveModalContent, setSaveModalContent}}>
+            {children}
+        </SaveContext.Provider>
+    )
+}
+ContextProvider.propTypes = {
+    children: PropTypes.element
+}
+
 export default function ChatbotPage(){
+    return(
+        <ContextProvider>
+            <ChatbotPageInner />
+        </ContextProvider>
+    )
+}
+
+function ChatbotPageInner(){
     const [chatList, setChatList] = useState([]);
     const [chatInput, setChatInput] = useState('');
     const [onProgress, setOnProgress] = useState(false);
+    const { showSaveModal } = useContext(SaveContext);
     const addChat = (role, text) => {
         setChatList(prevChatList => [...prevChatList, {role, parts: [{ text }]}]);
     }
@@ -63,6 +89,7 @@ export default function ChatbotPage(){
                         <button type="submit"><img src={arrowBtn} alt="제출 버튼 화살표" /></button>
                     </form>
                 </div>
+                {showSaveModal && <SaveModal />}
             </div>
         </div>
     )

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { SaveContext } from '@/common/saveContext';
 import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 
@@ -9,8 +10,11 @@ import './chats.css'
 export default function Chat({ role, content }){
     const [saved, setSaved] = useState(false);
     const [hover, setHover] = useState(false);
+    const { setShowSaveModal, setSaveModalContent } = useContext(SaveContext);
     const handleSave = () => {
         //Todo: show modal and send message to the server
+        setSaveModalContent(content);
+        setShowSaveModal(true);
         setSaved(!saved);
     }
     return(
