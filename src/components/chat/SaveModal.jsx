@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { SaveContext } from "@/common/saveContext";
-import ReactMarkdown from 'react-markdown';
 
 import "./SaveModal.css"
 import check from "@/assets/images/check.svg";
@@ -8,8 +7,8 @@ import cancel from "@/assets/images/cancel.svg";
 
 export default function SaveModal() {
     const { setShowSaveModal, saveModalContent, setSaveModalContent } = useContext(SaveContext);
-    const [preview, setPreview] = useState('');
-    const [input, setInput] = useState('');
+    const [titleInput, setTitleInput] = useState('');
+    const [contentInput, setContentInput] = useState(saveModalContent);
     const handleSubmit = (e) => {
         e.preventDefault();
         //Todo: send this content to the user's database.
@@ -17,11 +16,6 @@ export default function SaveModal() {
     }
 
     useEffect(() => {
-        if(saveModalContent.length > 100) {
-            const lines = saveModalContent.split('\n');
-            const firstFour = lines.slice(0, 8);
-            setPreview(firstFour.join('\n') + "\n\n...");
-        }
     }, []);
     return (
         <div className="chat-save-modal-back">
@@ -31,9 +25,9 @@ export default function SaveModal() {
                 <form onSubmit={handleSubmit}>
                     <div className="title">
                         <label>이름:</label>
-                        <input type="text" value={input} onChange={(e) => {setInput(e.target.value)}}></input>
+                        <input type="text" value={titleInput} onChange={(e) => {setTitleInput(e.target.value)}}></input>
                     </div>
-                    <div className="save-modal-content"><ReactMarkdown>{preview}</ReactMarkdown></div>
+                    <div className="save-modal-content"><textarea value={contentInput} onChange={(e) => {setContentInput(e.target.value)}}></textarea></div>
                     <div className="save btn-container"><button type="submit"><img src={check} alt="확인 버튼" /></button></div>
                 </form>
             </div>
