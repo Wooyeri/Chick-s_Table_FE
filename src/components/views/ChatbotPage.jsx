@@ -23,7 +23,7 @@ export default function ChatbotPage(){
             setOnProgress(true);
             addChat("user", userInput);
             getModelResponse(userInput).then(res =>{
-                addChat("model", res);
+                if(res) addChat("model", res);
                 setOnProgress(false);
             })
             .catch(err => {
@@ -35,7 +35,7 @@ export default function ChatbotPage(){
     useEffect(()=>{
         //Todo: Get user information from the server and refine it
         const userDisease = '고혈압, 땅콩 알레르기'
-        const userHealthInfo = `Recommend me the cuisine recipe that I ask you. The recipe must suitable with my health status. I have some disease that in korean, '${userDisease}'. Tell me all of your response in korean. Don't use Chinese, Japanese, English alphabet but only Korean.`
+        const userHealthInfo = `Recommend me the cuisine recipe that I ask you. The recipe must suitable with or good for my health status. I have some disease that in korean, '${userDisease}'. Tell me all of your response in korean. Don't use Chinese, Japanese, English alphabet but only Korean.`
         const userHealthInfoToShow = `나의 건강상태에 맞는 요리 레시피를 추천해줘. 나는 ${userDisease}이(가) 있어.`
         const initialChatList = [
             {role: 'prompt', parts: [{ text: userHealthInfo }]},
