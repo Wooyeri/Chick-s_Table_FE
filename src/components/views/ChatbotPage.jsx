@@ -36,7 +36,7 @@ export default function ChatbotPage(){
     useEffect(()=>{
         //Todo: Get user information from the server and refine it
         const userDisease = '고혈압, 땅콩 알레르기'
-        const userHealthInfo = `내가 말해주는 요리의 레시피를 내 건강 상태에 맞추어 추천해줘. 나는 ${userDisease} 있어. 답변에 한자나 일본 글자는 모두 한글로 바꿔줘.`
+        const userHealthInfo = `Recommend me the suitable cuisine recipe for my health status that I ask you. I have some disease that in korean, '${userDisease}'. Tell me all of your response in korean.`
         const userHealthInfoToShow = `나의 건강상태에 맞는 요리 레시피를 추천해줘. 나는 ${userDisease}이(가) 있어.`
         const initialChatList = [
             {role: 'prompt', parts: [{ text: userHealthInfo }]},
@@ -61,7 +61,7 @@ export default function ChatbotPage(){
                 <div className="chat-input-area">
                     <form onSubmit={handleSubmit}>
                         <input placeholder="챗봇에게 보낼 메세지를 입력하세요." value={chatInput} onChange={handleChange}></input>
-                        <button type="submit"><img src={arrowBtn} /></button>
+                        <button type="submit"><img src={arrowBtn} alt="제출 버튼 화살표" /></button>
                     </form>
                 </div>
             </div>

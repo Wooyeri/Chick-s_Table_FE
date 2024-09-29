@@ -10,17 +10,18 @@
     justify-content: right;
 }
 
-.chat-list .bubble.model {
+.chat-list .bubble {
     width: fit-content;
+    max-width: 75%;
     padding: 2rem;
+}
+.chat-list .bubble.model {
     background: #c8d6d5;
     border: 1px solid rgba(112, 124, 151, 0.2);
     border-radius: 16px 16px 16px 0px;
     color: black;
 }
 .chat-list .bubble.user {
-    width: fit-content;
-    padding: 2rem;
     background: #21978B;
     border: 1px solid rgba(112, 124, 151, 0.25);
     border-radius: 16px 16px 0px 16px;
@@ -45,4 +46,12 @@
     to {
       transform: rotate(360deg);
     }
-  }
+}
+
+.chat-list .save-btn {
+    margin: 0.4rem;
+}
+.chat-list .save-btn img {
+    cursor: pointer;
+    width: 2rem;
+}
