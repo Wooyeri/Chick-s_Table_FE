@@ -6,7 +6,6 @@ import ChatbotIcon from '../../assets/chatbot-icon.png';
 import Dropdown from '../../assets/dropdown-icon.png';
 import { Link } from "react-router-dom";
 
-
 const HeaderComponent = () => {
   const [isDropdownVisible, setDropdownVisible] = useState(false); // 드롭다운 상태 추가
 
@@ -41,16 +40,17 @@ const HeaderComponent = () => {
       <nav className="header-bar">
         <ul className="header-list">
           <Link to="/recipesearch">
-            <li className="header-item"><img src={SearchIcon} alt="Search Icon" className="search-icon" />레시피 검색</li>
+            <li className="header-item">
+              <img src={SearchIcon} alt="Search Icon" className="search-icon" />레시피 검색
+            </li>
           </Link>
-          <div class="vertical-bar"></div>
-          {/* <Link to="/chatbot"> */}
-            <li className="header-item"><img src={ChatbotIcon} alt="Chatbot Icon" className="chatbot-icon" />챗봇과 대화</li>          
-          {/* </Link> */}
-          <div class="vertical-bar"></div>
-          <li className="dropdown-container">
+          <div className="vertical-bar"></div>
+          <li className="header-item">
+            <img src={ChatbotIcon} alt="Chatbot Icon" className="chatbot-icon" />나만의 영양사
+          </li>
+          <div className="vertical-bar"></div>
+          <li className="dropdown-container" onClick={toggleDropdown}>
             <img src={Dropdown} alt="Dropdown" className="dropdown-icon" />
-            {/* <div className={`dropdown-menu ${isDropdownVisible ? "show" : ""}`}>{renderDropdownMenu()}</div> */}
           </li>
         </ul>
       </nav>
