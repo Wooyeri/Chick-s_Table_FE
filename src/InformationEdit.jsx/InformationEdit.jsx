@@ -19,6 +19,10 @@ const InformationEdit = () => {
   const [file, setFile] = useState(null);
 
   useEffect(() => {
+    // 로컬 스토리지에서 유저 정보를 가져오기
+    const userId = localStorage.getItem('username');  // username으로 변경
+    const token = localStorage.getItem('access_token');  // token 대신 access_token으로 변경
+
     if (location.state) {
       const { id, email, nickname, diseases, image } = location.state;
       setId(id);
@@ -26,30 +30,25 @@ const InformationEdit = () => {
       setNickname(nickname);
       setDiseases(diseases || []);
       setSelectedImage(image || "https://via.placeholder.com/120");
-    }
-
-    const fetchUserInfo = async () => {
-      try {
-        const userId = localStorage.getItem('userId');
-        const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:8080/user/${userId}`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        const user = response.data;
-        setId(user.id);  // ID 상태 업데이트
-        setEmail(user.email);  // Email 상태 업데이트
-        setNickname(user.nickname);
-        setDiseases(user.diseases || []);
-        setSelectedImage(user.profilePath || "https://via.placeholder.com/120");
-      } catch (error) {
-        console.error("사용자 정보를 가져오는 데 실패했습니다.", error);
-      }
-    };
-
-    if (!location.state) {
-      fetchUserInfo(); 
+    } else if (userId && token) {
+      const fetchUserInfo = async () => {
+        try {
+          const response = await axios.get(`http://localhost:8080/user/${userId}`, {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          const user = response.data;
+          setId(user.id);  // ID 상태 업데이트
+          setEmail(user.email);  // Email 상태 업데이트
+          setNickname(user.nickname);
+          setDiseases(user.diseases || []);
+          setSelectedImage(user.profilePath || "https://via.placeholder.com/120");
+        } catch (error) {
+          console.error("사용자 정보를 가져오는 데 실패했습니다.", error);
+        }
+      };
+      fetchUserInfo();
     }
   }, [location]);
 
@@ -76,8 +75,8 @@ const InformationEdit = () => {
 
   const handleSave = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const userId = localStorage.getItem('userId');
+      const token = localStorage.getItem('access_token'); // 토큰 이름 수정
+      const userId = localStorage.getItem('username'); // userId 대신 username 사용
 
       const data = {
         nickname, 
@@ -103,9 +102,9 @@ const InformationEdit = () => {
       // 저장 완료 후 마이페이지로 이동
       navigate("/mypage", { state: { nickname, diseases, image: selectedImage } });
 
-  } catch (error) {
-    console.error('저장하는 데 실패했습니다.', error);
-  }
+    } catch (error) {
+      console.error('저장하는 데 실패했습니다.', error);
+    }
   };
 
   return (

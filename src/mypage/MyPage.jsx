@@ -18,29 +18,33 @@ const MyPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    const userId = localStorage.getItem('userId');
-    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('username'); // username으로 변경, userId가 저장된 값을 가져옴
+    const token = localStorage.getItem('access_token'); // token 대신 access_token으로 변경
 
-    // API 호출을 통해 사용자 정보 가져오기
-    axios.get(`http://localhost:8080/user/${userId}`, {
-      headers: {
-        'Authorization': `Bearer ${token}` // JWT 토큰을 헤더에 포함
-      }
-    })
-    .then(response => {
-      const user = response.data;
-      // 사용자 데이터 설정
-      setUserData({
-        id: user.id,
-        email: user.email,
-        nickname: user.nickname,
-        image: user.profilePath || 'https://via.placeholder.com/120', // profilePath로 설정
-        diseases: user.diseases || [] // diseases 배열 처리
+    if (userId && token) {
+      // API 호출을 통해 사용자 정보 가져오기
+      axios.get(`http://localhost:8080/user/${userId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}` // JWT 토큰을 헤더에 포함
+        }
+      })
+      .then(response => {
+        const user = response.data;
+        // 사용자 데이터 설정
+        setUserData({
+          id: user.id,
+          email: user.email,
+          nickname: user.nickname,
+          image: user.profilePath || 'https://via.placeholder.com/120', // profilePath로 설정
+          diseases: user.diseases || [] // diseases 배열 처리
+        });
+      })
+      .catch(error => {
+        console.error('사용자 정보를 가져오는 데 실패했습니다.', error);
       });
-    })
-    .catch(error => {
-      console.error('사용자 정보를 가져오는 데 실패했습니다.', error);
-    });
+    } else {
+      console.error('유효한 userId 또는 토큰이 없습니다.');
+    }
   }, []);
 
   const openModal = () => {
@@ -75,7 +79,7 @@ const MyPage = () => {
             </span>
           </p>
         </div>
-        <button className="edit-button" onClick={() => navigate('/edit')}>
+        <button className="edit-button" onClick={() => navigate('/mypage/edit')}>
           <img src={pencilIcon} alt="Edit" style={{ width: '20px', height: '20px' }} />
         </button>
       </div>
