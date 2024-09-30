@@ -49,6 +49,8 @@ const JoinPage = () => {
         if (res.status === 201) {
           console.log("회원가입 성공"); // 성공 메시지 출력 (디버깅 목적)
           alert("회원가입 성공!"); // 회원가입 성공 알림 표시
+          navigate("/login");  // 로그인 페이지로 리다이렉트
+
         } else {
           alert(res.data); // 서버 응답이 201이 아닐 경우 실패 알림 표시
         }

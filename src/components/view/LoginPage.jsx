@@ -38,6 +38,7 @@ const LoginPage = () => {
         localStorage.setItem("username", returnedUsername);
 
         alert("로그인 성공!"); // 사용자에게 성공 메시지 표시
+        navigate("/"); // 메인 페이지로 리다이렉트
       } else {
         // 응답이 성공이 아닐 경우
         alert("로그인에 실패하였습니다."); // 사용자에게 실패 메시지 표시
