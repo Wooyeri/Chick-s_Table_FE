@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // useState 추가
+import React, { useState } from 'react'; 
 import './HeaderComponent.css';
 import ChickLoge from '../../assets/chick_text.png';
 import SearchIcon from '../../assets/search-icon.png';
@@ -13,11 +13,19 @@ const HeaderComponent = () => {
     setDropdownVisible(!isDropdownVisible); // 드롭다운 토글 함수
   };
 
+  const closeDropdown = () => {
+    setDropdownVisible(false); // 드롭다운 닫기 함수
+  };
+
   const renderDropdownMenu = () => {
     return (
       <ul className="dropdown-menu">
-        <li className="dropdown-list"><Link to="/login">로그인</Link></li>
-        <li className="dropdown-list"><Link to="/join">회원가입</Link></li>
+        <li className="dropdown-list">
+          <Link to="/login" onClick={closeDropdown}>로그인</Link>
+        </li>
+        <li className="dropdown-list">
+          <Link to="/join" onClick={closeDropdown}>회원가입</Link>
+        </li>
       </ul>
     );
   };
@@ -46,7 +54,7 @@ const HeaderComponent = () => {
           </li>
         </ul>
       </nav>
-      {/* 드롭다운 메뉴를 헤더 아래에 위치시킴 */}
+
       {isDropdownVisible && (
         <div className="dropdown-menu-container">
           {renderDropdownMenu()}
