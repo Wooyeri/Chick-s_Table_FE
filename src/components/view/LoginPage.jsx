@@ -1,48 +1,52 @@
 import { useState } from "react"; // React의 useState 훅을 임포트
-import "./LoginJoinChangePWPage.css"; // CSS 파일 임포트
+import "./LoginJoinChangePWPage.css"; // CSS 파일을 임포트하여 스타일 적용
 import axios from "axios"; // Axios를 임포트하여 HTTP 요청 처리
 
+// LoginPage 컴포넌트 정의
 const LoginPage = () => {
-  // 사용자 입력을 저장하는 상태 변수 정의
+  // 사용자 아이디와 비밀번호 입력을 저장하는 상태 변수
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  // 양식이 제출될 때 호출되는 함수
+  // 로그인 폼이 제출될 때 호출되는 함수
   const handleSubmit = async (event) => {
-    event.preventDefault(); // 폼이 제출될 때 페이지가 새로고침 되는 것을 방지
+    event.preventDefault(); // 폼 제출 시 페이지 새로고침 방지
 
-    console.log("Login Information:", { username, password }); // 사용자 정보 출력 (디버깅 목적)
+    console.log("Login Information:", { username, password }); // 입력한 사용자 정보를 콘솔에 출력 (디버깅용)
+
+    // 폼 데이터를 서버에 전송하기 위해 FormData 객체 생성
+    const formData = new FormData();
+    formData.append('username', username); // 사용자 아이디 추가
+    formData.append('password', password); // 사용자 비밀번호 추가
 
     try {
-      // 서버에 로그인 요청
+      // 서버로 로그인 요청 전송
       const res = await axios({
         method: "POST",
-        url: "http://localhost:8080/login", // 로그인 API URL
-        data: { username, password }, // 서버로 보낼 사용자 정보
+        url: "http://localhost:8080/login", // 로그인 API의 URL
+        data: formData, // 폼 데이터 전송
       });
 
-      // 서버로부터의 응답이 성공적일 경우
+      // 응답 상태가 성공(200)일 경우 처리
       if (res.status === 200) {
-        // JWT 토큰과 사용자 이름을 응답 헤더에서 가져옴
+        // 서버로부터 JWT 토큰과 사용자 이름을 응답 헤더에서 가져옴
         const token = res.headers["token"];
         const returnedUsername = res.headers["username"];
 
-        // 로컬 스토리지에 JWT 토큰과 사용자 이름 저장
+        // 로컬 스토리지에 JWT 토큰과 사용자 이름을 저장
         localStorage.setItem("access_token", token);
         localStorage.setItem("username", returnedUsername);
 
-        console.log("로그인 성공"); // 성공 메시지 출력 (디버깅 목적)
-
-        // 로그인 성공 알림 표시
-        alert("로그인 성공!");
+        console.log("로그인 성공"); // 성공 메시지 출력 (디버깅용)
+        alert("로그인 성공!"); // 사용자에게 성공 메시지 표시
       } else {
-        // 서버 응답이 200이 아닐 경우 실패 알림 표시
-        alert("로그인에 실패했습니다.");
+        // 응답이 성공이 아닐 경우
+        alert("로그인에 실패했습니다."); // 사용자에게 실패 메시지 표시
       }
     } catch (err) {
-      // 예외가 발생했을 경우 오류 메시지 출력 및 알림 표시
-      console.error("[login]", err);
-      alert("오류가 발생했습니다.");
+      // 로그인 요청 중 예외 발생 시 처리
+      console.error("[login]", err); // 오류 메시지를 콘솔에 출력
+      alert("오류가 발생했습니다."); // 사용자에게 오류 메시지 표시
     }
   };
 
@@ -52,31 +56,33 @@ const LoginPage = () => {
       <form onSubmit={handleSubmit}>
         <h1>로그인</h1>
         <div className="input-field">
-          {/* 사용자 ID 입력 필드 */}
+          <label>아이디</label>
+          {/* 사용자 아이디 입력 필드 */}
           <input
             type="text"
-            placeholder="ID" // 입력 필드에 보이는 텍스트
+            placeholder="아이디" // 필드에 표시될 안내 텍스트
             required // 필수 입력 필드로 지정
             value={username} // 상태 변수와 바인딩
-            onChange={(e) => setUsername(e.target.value)} // 입력 변경 시 상태 업데이트
+            onChange={(e) => setUsername(e.target.value)} // 입력이 변경될 때 상태 업데이트
           />
         </div>
         <div className="input-field">
+          <label>비밀번호</label>
           {/* 사용자 비밀번호 입력 필드 */}
           <input
             type="password"
-            placeholder="PASSWORD" // 입력 필드에 보이는 텍스트
+            placeholder="비밀번호" // 필드에 표시될 안내 텍스트
             required // 필수 입력 필드로 지정
             value={password} // 상태 변수와 바인딩
-            onChange={(e) => setPassword(e.target.value)} // 입력 변경 시 상태 업데이트
+            onChange={(e) => setPassword(e.target.value)} // 입력이 변경될 때 상태 업데이트
           />
         </div>
         {/* 로그인 버튼 */}
-        <button type="submit">Login</button>
-        {/* 회원가입 링크 */}
+        <button type="submit">로그인</button>
+        {/* 회원가입 페이지 링크 */}
         <div className="in-link">
           <p>
-            회원이 아니십니까? <a href="/Join">회원가입하기</a>
+            회원이 아니십니까? <a href="/Join">회원가입하기</a> {/* 회원가입 링크 */}
           </p>
         </div>
       </form>
