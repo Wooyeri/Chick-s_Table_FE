@@ -20,11 +20,11 @@ const HeaderComponent = () => {
           <Link to="/recipesearch">
             <li className="header-item"><img src={SearchIcon} alt="Search Icon" className="search-icon" />레시피 검색</li>
           </Link>
-          <div class="vertical-bar"></div>
+          <div className="vertical-bar"></div>
           {/* <Link to="/chatbot"> */}
-            <li className="header-item"><img src={ChatbotIcon} alt="Chatbot Icon" className="chatbot-icon" />챗봇과 대화</li>          
+            <li className="header-item"><img src={ChatbotIcon} alt="Chatbot Icon" className="chatbot-icon" />나만의 영양사</li>          
           {/* </Link> */}
-          <div class="vertical-bar"></div>
+          <div className="vertical-bar"></div>
           <li className="dropdown-container">
             <img src={Dropdown} alt="Dropdown" className="dropdown-icon" />
             {/* <div className={`dropdown-menu ${isDropdownVisible ? "show" : ""}`}>{renderDropdownMenu()}</div> */}

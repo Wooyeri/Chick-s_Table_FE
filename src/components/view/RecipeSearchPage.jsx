@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './RecipeSearchPage.css';
 import SearchIcon from '../../assets/grey-search-icon.png';
-import SearchImg from '../../assets/search-icon.png';
 
 const API_KEY = '9b31d1ae298a4fa49c49'; // API Key
 
@@ -10,6 +10,8 @@ const RecipeSearchPage = () => {
   const [recipes, setRecipes] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [recipesPerPage] = useState(8); // 한 페이지에 보여줄 레시피 수
+  const [isTyping, setIsTyping] = useState(false); // 입력중 상태를 관리할 변수
+  const navigate = useNavigate(); // useNavigate 추가
 
   // API 호출 함수
   const fetchRecipes = async () => {
@@ -33,7 +35,7 @@ const RecipeSearchPage = () => {
       }));
 
       setRecipes(recipesData);
-      console.log("Recipes data:", recipesData); // API 호출 후 데이터 확인
+      setIsTyping(false); // 검색 완료 시 입력 중 상태 해제
     } catch (error) {
       console.error("Error fetching recipes:", error);
     }
@@ -47,19 +49,32 @@ const RecipeSearchPage = () => {
     }
   };
 
+  const handleInputChange = (e) => {
+    setSearchInput(e.target.value);
+    setIsTyping(true); // 입력 중 상태로 설정
+  };
+
   // 현재 페이지에 해당하는 레시피 계산
   const indexOfLastRecipe = currentPage * recipesPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
   const currentRecipes = recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
 
-  // 페이지 버튼 클릭 핸들러
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  // 페이지 버튼 클릭 핸들러 (페이지 변경 함수)
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   // 총 페이지 수 계산
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(recipes.length / recipesPerPage); i++) {
     pageNumbers.push(i);
   }
+
+  // 레시피 카드 클릭 핸들러 (레시피 이름을 상세 페이지로 전달)
+  const handleRecipeClick = (recipe) => {
+    // 레시피 이름을 URL에 포함하여 상세 페이지로 이동
+    navigate(`/recipe/${encodeURIComponent(recipe.RCP_NM)}`);
+  };
 
   return (
     <div className="recipe-search-page">
@@ -78,10 +93,7 @@ const RecipeSearchPage = () => {
                 className="search-input"
                 placeholder="레시피 검색"
                 value={searchInput}
-                onChange={(e) => {
-                  setSearchInput(e.target.value);
-                  console.log("Search term:", e.target.value); // 검색어 확인
-                }}
+                onChange={handleInputChange} // 입력 감지 함수
                 onKeyDown={handleKeyDown} // 엔터 키 입력 감지
               />
             </div>
@@ -96,11 +108,13 @@ const RecipeSearchPage = () => {
       {/* Recipe Cards */}
       <div className="recipe-card-wrapper">
         <div className='recipe-card-container'>
-          {currentRecipes.length > 0 ? (
+          {isTyping && !recipes.length ? (
+            <div className="no-results">입력 중...</div> // 입력 중 상태 표시
+          ) : currentRecipes.length > 0 ? (
             currentRecipes.map((recipe) => (
-              <div key={recipe.RCP_SEQ} className="recipe-card">
+              <div key={recipe.RCP_SEQ} className="recipe-card" onClick={() => handleRecipeClick(recipe)}>
                 <div className="image-holder">
-                  <img src={recipe.ATT_FILE_NO_MAIN || SearchImg} alt="Recipe Img" className="search-img" />
+                  <img src={recipe.ATT_FILE_NO_MAIN || SearchIcon} alt="Recipe Img" className="recipe-img" />
                 </div>
                 <div className="recipe-info">
                   <div className="recipe-name">{recipe.RCP_NM}</div>

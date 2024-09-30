@@ -12,7 +12,7 @@
 }
 
 .search-title {
-  font-size: 20px;
+  font-size: 24px;
   text-align: center;
   margin: 5%;
   font-weight: bold;
@@ -52,7 +52,7 @@
   outline: none; /* 포커스 시 기본 아우터 제거 */
   border-radius: 50px; /* searchbar와 같은 radius */
   padding: 10px 20px; /* padding 값 조정 (optional) */
-  font-size: 16px; /* 글자 크기 설정 (optional) */
+  font-size: 18px; /* 글자 크기 설정 (optional) */
 }
 
 .grey-search-icon {
@@ -89,11 +89,16 @@
   align-items: center; /* 수직 가운데 정렬 (선택 사항) */
 }
 
+.no-results {
+  font-size: 20px;
+}
+
 .recipe-card-container {
   width: 120vh;
   display: flex; /* Flexbox를 사용하여 카드들을 수평으로 정렬 */
   flex-wrap: wrap; /* 카드가 부모 영역을 넘칠 경우 다음 줄로 이동 */
   gap: 18px; /* 카드 사이의 간격 조정 (필요시 조절) */
+  cursor: pointer;
 }
 
 .recipe-card {
@@ -105,7 +110,7 @@
   overflow: hidden; /* 카드 크기를 초과하는 이미지가 잘리도록 함 */
 }
 
-.search-img {
+.recipe-img {
   width: 100%; /* 카드 너비에 맞춰서 조절 */
   height: auto; /* 비율 유지 */
   max-height: 20vh; /* 최대 세로 길이 설정 (예: 카드의 60%) */
@@ -114,13 +119,13 @@
 
 .recipe-name {
   padding: 12px 12px 6px 16px;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 550;
 }
 
 .recipe-category {
   padding: 0px 16px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .category-bold {
