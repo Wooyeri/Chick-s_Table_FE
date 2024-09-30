@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react'; 
 import './HeaderComponent.css';
 import ChickLoge from '../../assets/chick_text.png';
 import SearchIcon from '../../assets/search-icon.png';
@@ -8,6 +8,29 @@ import { Link } from "react-router-dom";
 
 
 const HeaderComponent = () => {
+  const [isDropdownVisible, setDropdownVisible] = useState(false); // 드롭다운 상태 추가
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!isDropdownVisible); // 드롭다운 토글 함수
+  };
+
+  const closeDropdown = () => {
+    setDropdownVisible(false); // 드롭다운 닫기 함수
+  };
+
+  const renderDropdownMenu = () => {
+    return (
+      <ul className="dropdown-menu">
+        <li className="dropdown-list">
+          <Link to="/login" onClick={closeDropdown}>로그인</Link>
+        </li>
+        <li className="dropdown-list">
+          <Link to="/join" onClick={closeDropdown}>회원가입</Link>
+        </li>
+      </ul>
+    );
+  };
+
   return (
     <header className="top-bar">
       <div className="logo">
@@ -31,9 +54,14 @@ const HeaderComponent = () => {
           </li>
         </ul>
       </nav>
+
+      {isDropdownVisible && (
+        <div className="dropdown-menu-container">
+          {renderDropdownMenu()}
+        </div>
+      )}
     </header>
   );
 };
 
 export default HeaderComponent;
-
