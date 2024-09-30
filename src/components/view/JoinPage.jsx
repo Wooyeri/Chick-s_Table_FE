@@ -1,6 +1,7 @@
 import { useState } from "react"; // React에서 useState 훅을 사용하기 위해 임포트
 import "./LoginJoinChangePWPage.css"; // 스타일 시트를 임포트
 import axios from "axios"; // axios를 사용하여 서버와 통신하기 위해 임포트
+import { useNavigate } from "react-router-dom"; // 리다이렉트를 위해 useNavigate 훅 사용
 
 // 회원가입 페이지 컴포넌트 정의
 const JoinPage = () => {
@@ -21,6 +22,8 @@ const JoinPage = () => {
       [name]: value, // 입력 필드의 이름을 키로 사용하여 상태 업데이트
     }));
   };
+  
+  const navigate = useNavigate(); // navigate 함수 정의
 
   // 회원가입 폼이 제출될 때 호출되는 함수
   const handleSubmit = async (event) => {
@@ -49,6 +52,9 @@ const JoinPage = () => {
         if (res.status === 201) {
           console.log("회원가입 성공"); // 성공 메시지 출력 (디버깅 목적)
           alert("회원가입 성공!"); // 회원가입 성공 알림 표시
+
+          navigate("/login");  // 로그인 페이지로 리다이렉트
+
         } else {
           alert(res.data); // 서버 응답이 201이 아닐 경우 실패 알림 표시
         }

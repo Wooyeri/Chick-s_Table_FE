@@ -64,7 +64,7 @@ const ChangePasswordPage = () => {
           <label>이메일</label>
           <input
             type="email" // 이메일 형식 유효성 검사를 위한 type
-            placeholder="EMAIL" // 필드에 보일 안내 텍스트
+            placeholder="이메일" // 필드에 보일 안내 텍스트
             required // 필수 입력 필드로 지정
             value={email} // 상태 변수와 연결
             onChange={(e) => setEmail(e.target.value)} // 이메일 상태 업데이트
@@ -76,7 +76,7 @@ const ChangePasswordPage = () => {
           <label>기존 비밀번호</label>
           <input
             type="password" // 비밀번호 입력 필드
-            placeholder="CURRENT PASSWORD" // 필드에 보일 안내 텍스트
+            placeholder="기존 비밀번호" // 필드에 보일 안내 텍스트
             required // 필수 입력 필드로 지정
             value={password} // 상태 변수와 연결
             onChange={(e) => setPassword(e.target.value)} // 비밀번호 상태 업데이트
@@ -88,7 +88,7 @@ const ChangePasswordPage = () => {
           <label>새로운 비밀번호</label>
           <input
             type="password" // 비밀번호 확인 입력 필드
-            placeholder="NEW PASSWORD" // 필드에 보일 안내 텍스트
+            placeholder="새로운 비밀번호" // 필드에 보일 안내 텍스트
             required // 필수 입력 필드로 지정
             value={newPassword} // 상태 변수와 연결
             onChange={(e) => setNewPassword(e.target.value)} // 비밀번호 확인 상태 업데이트
@@ -96,7 +96,7 @@ const ChangePasswordPage = () => {
         </div>
 
         {/* 비밀번호 변경 버튼 */}
-        <button type="submit">Change Password</button>
+        <button type="submit">비밀번호 변경</button>
 
         {/* 메인 페이지 링크 */}
         <div className="in-link">
