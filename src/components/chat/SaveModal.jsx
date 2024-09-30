@@ -4,6 +4,7 @@ import { SaveContext } from "@/common/saveContext";
 import "./SaveModal.css"
 import check from "@/assets/images/check.svg";
 import cancel from "@/assets/images/cancel.svg";
+import { saveRecipe } from "../../utils/save";
 
 export default function SaveModal() {
     const { setShowSaveModal, saveModalContent, setSaveModalContent } = useContext(SaveContext);
@@ -11,8 +12,19 @@ export default function SaveModal() {
     const [contentInput, setContentInput] = useState(saveModalContent);
     const handleSubmit = (e) => {
         e.preventDefault();
-        //Todo: send this content to the user's database.
-        setSaveModalContent('');
+        saveRecipe(titleInput, contentInput).then(res => {
+            if(res.status >= 200 && res.status < 300){
+                alert("저장 성공!");
+                setShowSaveModal(false);
+            } else {
+                alert("저장에 실패했습니다.")
+            }
+        }).catch(err => {
+            console.error(err);
+            alert("저장에 실패했습니다.")
+        }).finally(() => {
+            setSaveModalContent('');
+        })
     }
 
     useEffect(() => {

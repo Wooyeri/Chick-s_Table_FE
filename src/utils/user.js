@@ -10,7 +10,7 @@ export const getUserDisease = () => {
             Authorization: `Bearer ${token}`
         }
     }).then(res => {
-        if(res.status == 200){
+        if(res.status >= 200 && res.status < 300){
             const disease = res.data.diseases;
             if(Array.isArray(disease)){
                 return disease.join(", ")
