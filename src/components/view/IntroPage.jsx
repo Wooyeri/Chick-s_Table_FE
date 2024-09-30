@@ -3,7 +3,6 @@ import './IntroPage.css';
 
 const Intro = () => {
     return (
-        <div className='intro-page'>
         <div className='text-container'>
             <div className='main-title'>
                 당신의 <span className='bold'>식탁</span>
@@ -17,7 +16,6 @@ const Intro = () => {
             </div>
             <button className="start-btn">시작하기</button>
         </div>
-        </div>    
     );
 };
 

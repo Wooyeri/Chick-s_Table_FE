@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HeaderComponent from './components/layout/HeaderComponent';
 import Intro from "./components/view/IntroPage";
 import Search from "./components/view/RecipeSearchPage";
-import Recipe from './components/view/RecipeDetailPage';
 // import Chatbot from "./components/view/ChatbotPage";
 import Login from "./components/view/LoginPage";
 import Join from "./components/view/JoinPage";
@@ -28,9 +27,6 @@ function App() {
 
           {/* // http://localhost:3000/recipesearch */}
           <Route path="/recipesearch" element={<Search />}></Route>
-
-          {/* // http://localhost:3000/recipe/:id */}
-          <Route path="/recipe/:id" element={<Recipe />}></Route>
 
           {/* // http://localhost:3000/chatbot */}
           {/* <Route path="/chatbot" element={<Chatbot />}></Route> */}
