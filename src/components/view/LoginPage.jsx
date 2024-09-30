@@ -1,10 +1,13 @@
 import { useState } from "react";
 import "./LoginJoinChangePWPage.css";
 import axios from "axios";
+import { connect } from "react-router-dom"; // 로그인 성공의 경우 리다이렉트를 위해 사용
+
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = connect(); // 리다이렉트를 위해 connect 훅 사용
 
   const handleSubmit = async (event) => {
     event.preventDefault(); 
@@ -35,9 +38,13 @@ const LoginPage = () => {
         localStorage.setItem("username", returnedUsername);
 
         alert("로그인 성공!"); // 사용자에게 성공 메시지 표시
+        
         navigate("/"); // 메인 페이지로 리다이렉트
+
       } else {
+
         alert("로그인에 실패하였습니다."); 
+        
       }
     } catch (err) {
       console.error("[login]", err); 
