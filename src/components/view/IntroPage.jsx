@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // navigate를 사용하기 위해 import
+import { useNavigate } from 'react-router-dom';
 import './IntroPage.css';
 
 const Intro = () => {

@@ -1,7 +1,7 @@
-import { useState } from "react"; // React에서 useState 훅을 사용하기 위해 임포트
-import "./LoginJoinChangePWPage.css"; // 스타일 시트를 임포트
-import axios from "axios"; // axios를 사용하여 서버와 통신하기 위해 임포트
-import { useNavigate } from "react-router-dom"; // 리다이렉트를 위해 useNavigate 훅 사용
+import { useState } from "react";
+import "./LoginJoinChangePWPage.css"; 
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // 회원가입 페이지 컴포넌트 정의
 const JoinPage = () => {
@@ -153,4 +153,4 @@ const JoinPage = () => {
   );
 };
 
-export default JoinPage; // JoinPage 컴포넌트를 기본 내보내기
+export default JoinPage;
