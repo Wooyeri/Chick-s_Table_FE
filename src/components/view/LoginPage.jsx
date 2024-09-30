@@ -1,10 +1,12 @@
 import { useState } from "react";
 import "./LoginJoinChangePWPage.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate(); // 페이지 이동을 위한 훅 추가
 
   const handleSubmit = async (event) => {
     event.preventDefault(); 
@@ -34,7 +36,12 @@ const LoginPage = () => {
         localStorage.setItem("access_token", token);
         localStorage.setItem("username", returnedUsername);
 
-        alert("로그인 성공!"); 
+        alert("로그인 성공!"); // 사용자에게 성공 메시지 표시
+
+        // 토큰 저장 후 window 이벤트 발생
+        window.dispatchEvent(new Event("storage"));
+        
+        navigate("/"); // 메인 페이지로 리다이렉트
       } else {
         alert("로그인에 실패하였습니다."); 
       }

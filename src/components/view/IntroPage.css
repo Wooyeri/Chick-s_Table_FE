@@ -39,6 +39,7 @@
   color: #fff;
   font-size: 18px;
   border-radius: 50px;
+  cursor: pointer;
 }
 
 .start-btn:focus, .start-btn:hover{
