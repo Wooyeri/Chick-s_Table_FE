@@ -1,8 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 .top-bar {
   display: flex; /* 플렉스박스를 사용하여 아이템 정렬 */
   justify-content: space-between; /* 양쪽 끝으로 정렬 */

@@ -45,7 +45,7 @@
 }
 
 /* 입력 필드 안의 input 태그 스타일 */
-input {
+.input-field input {
   width: 73%; /* 입력 필드의 너비 */
   height: auto; /* 높이를 자동으로 설정 */
   background: transparent; /* 투명한 배경 */

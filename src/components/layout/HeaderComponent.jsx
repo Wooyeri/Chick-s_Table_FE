@@ -45,9 +45,11 @@ const HeaderComponent = () => {
             </li>
           </Link>
           <div className="vertical-bar"></div>
-          <li className="header-item">
-            <img src={ChatbotIcon} alt="Chatbot Icon" className="chatbot-icon" />나만의 영양사
-          </li>
+          <Link to="/chatbot">
+            <li className="header-item">
+              <img src={ChatbotIcon} alt="Chatbot Icon" className="chatbot-icon" />나만의 영양사
+            </li>
+          </Link>
           <div className="vertical-bar"></div>
           <li className="dropdown-container" onClick={toggleDropdown}>
             <img src={Dropdown} alt="Dropdown" className="dropdown-icon" />
