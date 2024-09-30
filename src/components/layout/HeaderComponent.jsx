@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; 
+import React, { useState } from 'react'; 
 import './HeaderComponent.css';
 import ChickLoge from '../../assets/chick_text.png';
 import SearchIcon from '../../assets/search-icon.png';
@@ -8,17 +8,6 @@ import { Link } from "react-router-dom";
 
 const HeaderComponent = () => {
   const [isDropdownVisible, setDropdownVisible] = useState(false); // 드롭다운 상태 추가
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 여부 상태 추가
-
-  // 토큰 확인하여 로그인 상태 설정
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      setIsLoggedIn(true); // 토큰이 있으면 로그인 상태로 설정!
-    } else {
-      setIsLoggedIn(false); // 토큰이 없으면 비로그인 상태로 설정
-    }
-  }, []);
 
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible); // 드롭다운 토글 함수
@@ -28,14 +17,7 @@ const HeaderComponent = () => {
     setDropdownVisible(false); // 드롭다운 닫기 함수
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('token'); // 토큰 삭제
-    setIsLoggedIn(false); // 로그아웃 상태로 변경
-    closeDropdown(); // 드롭다운 닫기
-  };
-
-  // 로그인되지 않은 경우의 드롭다운 메뉴
-  const renderLoggedOutDropdownMenu = () => {
+  const renderDropdownMenu = () => {
     return (
       <ul className="dropdown-menu">
         <li className="dropdown-list">
@@ -43,26 +25,6 @@ const HeaderComponent = () => {
         </li>
         <li className="dropdown-list">
           <Link to="/join" onClick={closeDropdown}>회원가입</Link>
-        </li>
-      </ul>
-    );
-  };
-
-  // 로그인된 경우의 드롭다운 메뉴
-  const renderLoggedInDropdownMenu = () => {
-    return (
-      <ul className="dropdown-menu">
-        <li className="dropdown-list">
-          <Link to="/mypage" onClick={closeDropdown}>마이페이지</Link>
-        </li>
-        <li className="dropdown-list">
-          <Link to="/saved-recipes" onClick={closeDropdown}>저장된 레시피</Link>
-        </li>
-        <li className="dropdown-list">
-          <Link to="/change-password" onClick={closeDropdown}>비밀번호 변경</Link>
-        </li>
-        <li className="dropdown-list" onClick={handleLogout}>
-          로그아웃
         </li>
       </ul>
     );
@@ -95,7 +57,7 @@ const HeaderComponent = () => {
 
       {isDropdownVisible && (
         <div className="dropdown-menu-container">
-          {isLoggedIn ? renderLoggedInDropdownMenu() : renderLoggedOutDropdownMenu()}
+          {renderDropdownMenu()}
         </div>
       )}
     </header>
