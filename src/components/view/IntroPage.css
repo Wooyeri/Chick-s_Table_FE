@@ -1,9 +1,10 @@
-body {
+.intro-page {
   background-color: #E7E7E7; /* 원하는 색상으로 변경 */
+  min-height: calc(100vh - 60px); /* 60px만큼 빼기 */
 }
 
 .text-container {
-  margin-top: 16%;
+  padding-top: 16%;
   margin-left: 10%;
 }
 
