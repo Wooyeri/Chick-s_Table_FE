@@ -12,7 +12,7 @@ const LoginPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault(); // 폼 제출 시 페이지 새로고침 방지
 
-    console.log("Login Information:", { username, password }); // 입력한 사용자 정보를 콘솔에 출력 (디버깅용)
+    // console.log("Login Information:", { username, password }); // 입력한 사용자 정보를 콘솔에 출력 (디버깅용)
 
     // 폼 데이터를 서버에 전송하기 위해 FormData 객체 생성
     const formData = new FormData();
@@ -31,22 +31,21 @@ const LoginPage = () => {
       if (res.status === 200) {
         // 서버로부터 JWT 토큰과 사용자 이름을 응답 헤더에서 가져옴
         const token = res.headers["token"];
-        const returnedUsername = res.headers["username"];
+        const returnedUsername = res.headers["id"];
 
         // 로컬 스토리지에 JWT 토큰과 사용자 이름을 저장
         localStorage.setItem("access_token", token);
         localStorage.setItem("username", returnedUsername);
 
-        console.log("로그인 성공"); // 성공 메시지 출력 (디버깅용)
         alert("로그인 성공!"); // 사용자에게 성공 메시지 표시
       } else {
         // 응답이 성공이 아닐 경우
-        alert("로그인에 실패했습니다."); // 사용자에게 실패 메시지 표시
+        alert("로그인에 실패하였습니다."); // 사용자에게 실패 메시지 표시
       }
     } catch (err) {
       // 로그인 요청 중 예외 발생 시 처리
       console.error("[login]", err); // 오류 메시지를 콘솔에 출력
-      alert("오류가 발생했습니다."); // 사용자에게 오류 메시지 표시
+      alert(err.response.data); // 사용자에게 오류 메시지 표시
     }
   };
 
