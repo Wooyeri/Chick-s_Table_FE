@@ -7,6 +7,8 @@ import { startChat, getModelResponse } from "@/utils/chat";
 
 import arrowBtn from "@/assets/images/arrowButton.svg"
 import "./ChatbotPage.css"
+import { getUserDisease } from "../../utils/user";
+import { useNavigate } from "react-router-dom";
 
 function ContextProvider ({ children }) {
     const [showSaveModal, setShowSaveModal] = useState(false);
@@ -35,6 +37,7 @@ function ChatbotPageInner(){
     const [chatInput, setChatInput] = useState('');
     const [onProgress, setOnProgress] = useState(false);
     const { showSaveModal } = useContext(SaveContext);
+    const navigate = useNavigate();
     const addChat = (role, text) => {
         setChatList(prevChatList => [...prevChatList, {role, parts: [{ text }]}]);
     }
@@ -59,24 +62,33 @@ function ChatbotPageInner(){
         }
     }
     useEffect(()=>{
-        //Todo: Get user information from the server and refine it
-        const userDisease = '고혈압, 땅콩 알레르기'
-        const userHealthInfo = `Recommend me the cuisine recipe that I ask you. The recipe must suitable with my health status. This is my disease list in korean, '${userDisease}'. All of your response must be in korean.`;
-        const userHealthInfoToShow = `나의 건강상태에 맞는 요리 레시피를 추천해줘. 나는 ${userDisease}이(가) 있어.`
-        const initialChatList = [
-            {role: 'prompt', parts: [{ text: userHealthInfo }]},
-            {role: 'promptToShow', parts: [{ text: userHealthInfoToShow }]}
-        ]
-        setChatList(initialChatList);
-        startChat(initialChatList
-            .filter(chat => chat.role != 'promptToShow')
-            .map(chat => {
-                if (chat.role == 'prompt'){
-                    const newChat = {...chat, role: 'user'};
-                    return newChat;
-                }
-                else return chat;
-            }))
+        var userDisease = '';
+        var userHealthInfoToShow = '요리 레시피를 추천해줘.';
+        getUserDisease().then(disease => {
+            if (disease) {
+                userDisease = `The recipe must suitable with my health status. This is my disease list in korean, '${disease}'. `;
+                userHealthInfoToShow = `나의 건강상태에 맞는 요리 레시피를 추천해줘. 나는 ${userDisease}이(가) 있어.`
+            }
+            const userHealthInfo = `Recommend me the cuisine recipe that I ask you. ${userDisease}All of your response must be in korean.`;
+            const initialChatList = [
+                { role: 'prompt', parts: [{ text: userHealthInfo }] },
+                { role: 'promptToShow', parts: [{ text: userHealthInfoToShow }] }
+            ]
+            setChatList(initialChatList);
+            startChat(initialChatList
+                .filter(chat => chat.role != 'promptToShow')
+                .map(chat => {
+                    if (chat.role == 'prompt') {
+                        const newChat = { ...chat, role: 'user' };
+                        return newChat;
+                    }
+                    else return chat;
+                }))
+        }).catch(err => {
+            console.log(err);
+            console.log('Access Denied.')
+            navigate('/');
+    });
     }, []);
 
     return(
