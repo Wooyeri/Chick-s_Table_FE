@@ -7,7 +7,7 @@ import Recipe from './components/view/RecipeDetailPage';
 import Login from "./components/view/LoginPage";
 import Join from "./components/view/JoinPage";
 import ChangePassword from "./components/view/ChangePasswordPage";
-// import Chatbot from "./components/view/ChatbotPage";
+import ChatbotPage from "./components/view/ChatbotPage";
 import MyPage from './mypage/MyPage'; 
 import InformationEdit from './InformationEdit.jsx/InformationEdit';
 
@@ -33,7 +33,7 @@ function App() {
           <Route path="/recipe/:id" element={<Recipe />}></Route>
 
           {/* // http://localhost:3000/chatbot */}
-          {/* <Route path="/chatbot" element={<Chatbot />}></Route> */}
+          <Route path="/chatbot" element={<ChatbotPage />}></Route>
 
           {/* // http://localhost:3000/mypage */}
           <Route path="/mypage" element={<MyPage />}></Route> 
