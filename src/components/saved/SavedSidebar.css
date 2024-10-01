@@ -16,7 +16,15 @@
 }
 .scrap-modal-content::-webkit-scrollbar-thumb {
     border-radius: 8px;
-    background-color: #d9e0df;
+    background-color: #d6e2e1;
+}
+.scrap-modal-content::-webkit-scrollbar-thumb:hover {
+    border-radius: 8px;
+    background-color: #cedddc;
+}
+.scrap-modal-content::-webkit-scrollbar-thumb:active {
+    border-radius: 8px;
+    background-color: #bccccb;
 }
 .scrap-modal-content h3 {
     margin: 1rem;

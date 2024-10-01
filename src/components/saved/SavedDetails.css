@@ -13,6 +13,14 @@
     border-radius: 8px;
     background-color: #ebebe1;
 }
+.saved-details-container::-webkit-scrollbar-thumb:hover {
+    border-radius: 8px;
+    background-color: #e4e4d7;
+}
+.saved-details-container::-webkit-scrollbar-thumb:active {
+    border-radius: 8px;
+    background-color: #d1d1bf;
+}
 
 .saved-details {
     border: 1px solid rgba(200, 214, 213, 0.8);
