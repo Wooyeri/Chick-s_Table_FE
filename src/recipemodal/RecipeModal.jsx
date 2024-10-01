@@ -11,9 +11,9 @@ const RecipeModal = ({ onClose, nickname }) => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const userId = localStorage.getItem('username');
         const token = localStorage.getItem('access_token');
-        const response = await axios.get(`http://localhost:8080/scrap`, {
+        const BASE_URL = import.meta.env.VITE_API_URL;
+        const response = await axios.get(`${BASE_URL}/scrap`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -22,7 +22,7 @@ const RecipeModal = ({ onClose, nickname }) => {
         setSavedRecipes(scraps); // 스크랩 객체를 저장
         setError(''); // 에러가 없으면 에러 메시지를 빈 문자열로 설정
       } catch (err) {
-        setError('레시피를 불러오는 도중 문제가 발생했습니다.'); // 에러 발생 시 메시지 설정
+        setError('레시피를 불러오는 도중 문제가 발생했습니다.', err); // 에러 발생 시 메시지 설정
         setSavedRecipes([]); // 에러 발생 시 빈 배열로 설정
       }
     };
@@ -33,10 +33,11 @@ const RecipeModal = ({ onClose, nickname }) => {
   // 스크랩 삭제 함수
   const handleDeleteClick = async (scrapId, recipeTitle) => {
     const isConfirmed = window.confirm(`"${recipeTitle}" 레시피를 삭제하시겠습니까?`);
+    const BASE_URL = import.meta.env.VITE_API_URL;
     if (isConfirmed) {
       try {
         const token = localStorage.getItem('access_token');  // 토큰 이름 통일
-        await axios.delete(`http://localhost:8080/scrap/${scrapId}`, {
+        await axios.delete(`${BASE_URL}/scrap/${scrapId}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -45,8 +46,8 @@ const RecipeModal = ({ onClose, nickname }) => {
         // 삭제 성공 후 UI 업데이트
         const updatedRecipes = savedRecipes.filter(scrap => scrap.id !== scrapId);
         setSavedRecipes(updatedRecipes);
-      } catch (error) {
-        setError('레시피를 삭제하는 도중 문제가 발생했습니다.');
+      } catch (err) {
+        setError('레시피를 삭제하는 도중 문제가 발생했습니다.', err);
       }
     }
   };
@@ -57,7 +58,7 @@ const RecipeModal = ({ onClose, nickname }) => {
         <button className="scrap-modal-close" onClick={onClose}>
           <img src={xImage} alt="x 아이콘" style={{ width: '15px', height: '15px' }} />
         </button>
-        <h3>"{nickname}" 님의 저장한 레시피 목록</h3>
+        <h3>`&quot;{nickname}`&quot; 님의 저장한 레시피 목록</h3>
         
         {/* 에러가 있을 때만 에러 메시지를 표시 */}
         {error && (

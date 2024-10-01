@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const api = axios.create({
-  baseURL: 'http://localhost:8080', // 여기에 백엔드 API 서버의 기본 URL을 설정합니다.
+  baseURL: BASE_URL, // 여기에 백엔드 API 서버의 기본 URL을 설정합니다.
   headers: {
     'Content-Type': 'application/json',
   },

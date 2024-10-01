@@ -10,20 +10,18 @@ const LoginPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault(); 
-
-    // x-www-form-urlencoded 형식으로 데이터를 서버에 전송하기 위해 URLSearchParams 객체 생성
-    const params = new URLSearchParams();
-    params.append('username', username); // 사용자 아이디 추가
-    params.append('password', password); // 사용자 비밀번호 추가
-
+    
     try {
       // 서버로 로그인 요청 전송
+      const BASE_URL = import.meta.env.VITE_API_URL;
       const res = await axios({
         method: "POST",
-        url: "http://localhost:8080/login", 
-        data: params, // x-www-form-urlencoded 방식으로 전송
+        url: `${BASE_URL}/login`, 
+        data: {
+          username, password
+        },
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded' // 반드시 헤더에 Content-Type 설정
+          'Content-Type': 'multipart/form-data' // 반드시 헤더에 Content-Type 설정
         }
       });
 

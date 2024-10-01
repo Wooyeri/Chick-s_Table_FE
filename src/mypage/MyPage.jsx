@@ -20,10 +20,11 @@ const MyPage = () => {
   useEffect(() => {
     const userId = localStorage.getItem('username'); // username으로 변경, userId가 저장된 값을 가져옴
     const token = localStorage.getItem('access_token'); // token 대신 access_token으로 변경
+    const BASE_URL = import.meta.env.VITE_API_URL;
 
     if (userId && token) {
       // API 호출을 통해 사용자 정보 가져오기
-      axios.get(`http://localhost:8080/user/${userId}`, {
+      axios.get(`${BASE_URL}/user/${userId}`, {
         headers: {
           'Authorization': `Bearer ${token}` // JWT 토큰을 헤더에 포함
         }

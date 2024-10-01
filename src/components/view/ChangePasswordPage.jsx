@@ -24,6 +24,7 @@ const ChangePasswordPage = () => {
   // 양식이 제출될 때 호출되는 함수
   const handleSubmit = async (event) => {
     event.preventDefault(); // 페이지 새로고침 방지
+    const BASE_URL = import.meta.env.VITE_API_URL;
 
     try {
       // 서버에 비밀번호 변경 요청
@@ -32,7 +33,7 @@ const ChangePasswordPage = () => {
 
       const res = await axios({
         method: "PATCH",
-        url: `http://localhost:8080/user/password/${id}`, // 비밀번호 변경 API URL
+        url: `${BASE_URL}/user/password/${id}`, // 비밀번호 변경 API URL
         headers: {
           Authorization: `Bearer ${token}`, // 헤더에 토큰 추가
         },

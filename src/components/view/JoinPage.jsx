@@ -36,9 +36,10 @@ const JoinPage = () => {
         return; // 함수 종료
       } else {
         // 서버에 회원가입 요청
+        const BASE_URL = import.meta.env.VITE_API_URL;
         const res = await axios({
           method: "POST",
-          url: "http://localhost:8080/join", // 회원가입 API URL
+          url: `${BASE_URL}/join`, // 회원가입 API URL
           data: {
             id: formData.id,
             nickname: formData.nickname,
@@ -64,9 +65,6 @@ const JoinPage = () => {
       console.error("[join]", err); // 콘솔에 오류 메시지 출력
       alert(err.response.data); // 사용자에게 오류 메시지 표시
     }
-
-    // 회원가입 로직 추가 가능 (예: 서버에 데이터를 보내기)
-    console.log("회원가입 정보:", formData); // 사용자 정보를 콘솔에 출력 (디버깅 목적)
   };
 
   return (

@@ -31,8 +31,9 @@ const InformationEdit = () => {
       setSelectedImage(image || "https://via.placeholder.com/120");
     } else if (userId && token) {
       const fetchUserInfo = async () => {
+        const BASE_URL = import.meta.env.VITE_API_URL;
         try {
-          const response = await axios.get(`http://localhost:8080/user/${userId}`, {
+          const response = await axios.get(`${BASE_URL}/user/${userId}`, {
             headers: {
               'Authorization': `Bearer ${token}`
             }
@@ -76,6 +77,7 @@ const InformationEdit = () => {
     try {
       const token = localStorage.getItem('access_token'); // 토큰 이름 수정
       const userId = localStorage.getItem('username'); // userId 대신 username 사용
+      const BASE_URL = import.meta.env.VITE_API_URL;
 
       const data = {
         nickname, 
@@ -91,7 +93,7 @@ const InformationEdit = () => {
         formData.append('file', file); 
       }
 
-      await axios.patch(`http://localhost:8080/user/${userId}`, formData, {
+      await axios.patch(`${BASE_URL}/user/${userId}`, formData, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
