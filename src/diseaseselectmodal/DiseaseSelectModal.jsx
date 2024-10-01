@@ -83,11 +83,11 @@ const DiseaseSelectModal = ({ onClose, onSubmit }) => {
         <button className="modal-close-custom" onClick={onClose}>
           <img src={xImage} alt="x 아이콘" style={{ width: '15px', height: '15px' }} />
         </button>
-        <h3>질병 선택</h3>
+        <h3 className="diseases-name" >질병 선택</h3>
 
         {selectedDisease && (
           <div className="blood-sugar-input-custom">
-            <label>{selectedDisease}</label>
+            <label className="diseases-title1">{selectedDisease}</label>
             {["고혈압", "저혈압"].includes(selectedDisease) ? (
               <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
                 <input
@@ -125,12 +125,12 @@ const DiseaseSelectModal = ({ onClose, onSubmit }) => {
         )}
 
         {errorMessage && (
-          <p style={{ color: "red", fontSize: "12px", marginTop: "-10px", marginBottom: "3px" }}>
+          <p className="error-message-custom">
             {errorMessage}
           </p>
         )}
 
-        <p style={{ marginTop: "0px", marginBottom: "10px" }}>{comment}</p>
+        <p className="comment">{comment}</p>
 
         <div className="disease-options-custom">
           <button
@@ -158,10 +158,10 @@ const DiseaseSelectModal = ({ onClose, onSubmit }) => {
             저혈압
           </button>
         </div>
-
-        <button className="confirm-button-custom" onClick={handleSubmit}>
-          선택
-        </button>
+        
+        <div class="confirm-button-container" onClick={handleSubmit}>
+          <button class="confirm-button-custom">저장</button>
+        </div>
       </div>
     </div>
   );

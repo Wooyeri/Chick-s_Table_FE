@@ -21,11 +21,13 @@
     border: 1px solid rgba(112, 124, 151, 0.2);
     border-radius: 16px 16px 16px 0px;
     color: black;
+    font-size: 1.20em;
 }
 .chat-list .bubble.user {
     background: #21978B;
     border: 1px solid rgba(112, 124, 151, 0.25);
     border-radius: 16px 16px 0px 16px;
+    font-size: 1.20em;
     color: #FFFFFF;
 }
 

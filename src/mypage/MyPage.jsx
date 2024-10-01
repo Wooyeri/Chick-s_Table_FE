@@ -61,7 +61,7 @@ const MyPage = () => {
             <p><strong>Email :</strong> {userData.email}</p>
             <p><strong>Nickname :</strong> {userData.nickname}</p>
             <p>
-              <strong style={{ display: 'inline-block', verticalAlign: 'top' }}>Diseases :</strong>
+              <strong className="disease-name" style={{ display: 'inline-block', verticalAlign: 'top' }}>Diseases :</strong>
               <span className="profile-disease-list">
                 {userData.diseases.map((d, index) => (
                   <span key={index} className="profile-disease-item">

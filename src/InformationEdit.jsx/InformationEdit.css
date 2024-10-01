@@ -1,19 +1,18 @@
 .info-edit-container-custom {
-  border: 1px solid #dddddd;
+  border: 1px solid #ddd;
   border-radius: 10px;
-  padding: 20px;
+  padding: 20px 40px 40px 40px;
   max-width: 600px;
-  margin: 20px auto;
+  margin: 60px auto;
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  border: 1px solid #21978B;
+  border: 2px solid #E0E0E0;
 }
 
 .h2-custom {
   text-align: left;
-  font-size: 1.3rem;
-  margin-bottom: 20px;
+  font-size: 26px;
+  margin-bottom: 50px;
 }
 
 .profile-section-custom {
@@ -90,14 +89,16 @@
 .disease-section-custom {
   border: 1px solid #000000;
   border-radius: 10px;
-  padding: 20px;
+  padding: 30px 20px;
   background-color: #f9f9f9;
-  margin-top: 10px;
 }
 
 .disease-title-custom {
-  margin-bottom: -20px; /* 제목을 박스와 겹치지 않도록 조정 */
-  padding: 0 10px; /* 제목 좌우 여백 추가 */
+  padding: 0 10px;
+  margin-top: 30px;
+  margin-bottom: 0; /* 이미 적용된 부분 */
+  font-size: 18px;
+  line-height: 1; /* 줄 간격 줄이기 */
 }
 
 .disease-list-custom {
