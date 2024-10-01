@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import './RecipeModal.css'; // 고유 이름을 사용한 CSS 추가
 import xImage from '../assets/x.png';
 
@@ -83,5 +84,9 @@ const RecipeModal = ({ onClose, nickname }) => {
     </div>
   );
 };
+RecipeModal.propTypes = {
+  onClose: PropTypes.func,
+  nickname: PropTypes.string
+}
 
 export default RecipeModal;

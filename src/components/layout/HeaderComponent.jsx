@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import './HeaderComponent.css';
 import ChickLoge from '../../assets/chick_text.png';
 import SearchIcon from '../../assets/search-icon.png';
@@ -13,7 +13,7 @@ const HeaderComponent = () => {
   const [dropdownIcon, setDropdownIcon] = useState(Dropdown);
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
-  const [profilePath, setProfilePath] = useState(null); // state로 profilePath 관리
+  // const [profilePath, setProfilePath] = useState(null); // state로 profilePath 관리
 
   // 컴포넌트가 마운트될 때와 localStorage 변경을 감지
   useEffect(() => {
@@ -55,7 +55,7 @@ const HeaderComponent = () => {
         },
       });
       const userInfo = response.data;
-      setProfilePath(userInfo.profilePath);
+      //setProfilePath(userInfo.profilePath);
       setDropdownIcon(userInfo.profilePath || Dropdown);
     } catch (error) {
       console.error("Error fetching user info:", error);

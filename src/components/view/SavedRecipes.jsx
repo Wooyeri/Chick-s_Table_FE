@@ -1,4 +1,3 @@
-import React from 'react';
 import './SavedRecipes.css';
 
 const SavedRecipes = () => {

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import xImage from '../assets/x.png';
+import PropTypes from 'prop-types';
 import "./DiseaseSelectModal.css";
 
 const DiseaseSelectModal = ({ onClose, onSubmit }) => {
@@ -165,5 +166,9 @@ const DiseaseSelectModal = ({ onClose, onSubmit }) => {
     </div>
   );
 };
+DiseaseSelectModal.propTypes = {
+  onClose: PropTypes.func,
+  onSubmit: PropTypes.func
+}
 
 export default DiseaseSelectModal;
