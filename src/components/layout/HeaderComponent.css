@@ -94,6 +94,7 @@ a {
   padding: 12px 28px 12px 28px; /* 내부 패딩 추가 */
   font-size: 18px;
   text-align: center;
+  background-color: #FFF;
 }
 
 .dropdown-list:first-child {

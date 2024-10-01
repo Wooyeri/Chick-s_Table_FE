@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './IntroPage.css';
+import IntroImage from '../../assets/chatting.png';
 
 const Intro = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태를 관리하는 state
@@ -40,6 +41,7 @@ const Intro = () => {
         </div>
         <button className="start-btn" onClick={handleStartClick}>시작하기</button>
       </div>
+      <img src={IntroImage} alt="Intro Image" className="intro-image" />
     </div>    
   );
 };
