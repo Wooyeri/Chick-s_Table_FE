@@ -1,3 +1,9 @@
+.mypage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .mypage-container {
     position: relative; /* 수정 버튼 위치 고정 */
     display: flex;
@@ -9,7 +15,6 @@
     border: 2px solid #E0E0E0;
     border-radius: 10px;
     width: 400px;
-    margin: 100px auto;
     box-shadow: 0px 82px 40px 0px #64646414; /* 폼의 그림자 효과 */
   }
 
