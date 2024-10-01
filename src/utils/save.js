@@ -14,3 +14,18 @@ export const saveRecipe = (title, contents) => {
         }
     })
 }
+
+export const getSavedRecipeDetails = (id) => {
+    const token = localStorage.getItem("access_token");
+    return axios.get(`${BASE_URL}/scrap/${id}`,
+    {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": 'application/json'
+        }
+    }).then(res => {
+        if(res.status >= 200 && res.status < 300){
+            return res.data
+        }
+    })
+}
