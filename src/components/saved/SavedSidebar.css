@@ -28,6 +28,7 @@
 }
 .scrap-modal-content h3 {
     margin: 1rem;
+    font-size: 1.3rem;
     word-break: break-all;
 }
 
@@ -50,6 +51,7 @@
     width: 90%;
     min-height: 3.5rem;
     border-radius: 5px;
+    font-size: 1.2rem;
 }
 .scrap-recipe-item:hover {
     background-color: #f4fffe;

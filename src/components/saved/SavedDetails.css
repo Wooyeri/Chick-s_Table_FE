@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: flex-start;
     overflow-y: auto;
+    font-size: 1.2rem;
 }
 .saved-details-container::-webkit-scrollbar {
     width: 15px;
