@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import './RecipeModal.css'; // 고유 이름을 사용한 CSS 추가
+import './SavedSidebar.css'; // 고유 이름을 사용한 CSS 추가
 import xImage from '../assets/x.png';
 
-const RecipeModal = ({ onClose, nickname }) => {
+const SavedSidebar = ({ onClose, nickname }) => {
   const [savedRecipes, setSavedRecipes] = useState([]);  // 기본값을 빈 배열로 설정
   const [error, setError] = useState(''); // 에러 상태 추가
 
@@ -84,9 +84,9 @@ const RecipeModal = ({ onClose, nickname }) => {
     </div>
   );
 };
-RecipeModal.propTypes = {
+SavedSidebar.propTypes = {
   onClose: PropTypes.func,
   nickname: PropTypes.string
 }
 
-export default RecipeModal;
+export default SavedSidebar;

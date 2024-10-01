@@ -3,7 +3,6 @@ import axios from 'axios'; // axios로 API 호출
 import { useNavigate } from 'react-router-dom'; 
 import './MyPage.css'; 
 import pencilIcon from '../assets/pencil-icon.png';
-import RecipeModal from '../recipemodal/RecipeModal';
 import listIcon from '../assets/list.png';
 
 const MyPage = () => {
@@ -15,7 +14,6 @@ const MyPage = () => {
     diseases: [],
     image: 'https://via.placeholder.com/120' // 기본 프로필 사진
   });
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const userId = localStorage.getItem('username'); // username으로 변경, userId가 저장된 값을 가져옴
@@ -48,14 +46,6 @@ const MyPage = () => {
     }
   }, []);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <div className="mypage-container">
       <h2>마이페이지</h2>
@@ -85,11 +75,9 @@ const MyPage = () => {
         </button>
       </div>
 
-      <button className="saved-chat-button" onClick={openModal}>
+      <button className="saved-chat-button" onClick={() => {navigate('/saved-recipes')}}>
         저장한 레시피 목록 보러 가기 <img src={listIcon} alt="List Icon" style={{ width: '12px', height: '15px', verticalAlign: '-2px', marginLeft: '5px'}} />
       </button>
-
-      {isModalOpen && <RecipeModal onClose={closeModal} nickname={userData.nickname} />}
     </div>
   );
 };
