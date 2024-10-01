@@ -3,12 +3,11 @@ import { SaveContext } from "@/common/saveContext";
 import ChatList from "@/components/chat/ChatList";
 import SaveModal from "@/components/chat/SaveModal";
 import { PropTypes } from 'prop-types';
+import { getUserDisease } from "@/utils/user";
 import { startChat, getModelResponse } from "@/utils/chat";
 
 import arrowBtn from "@/assets/images/arrowButton.svg"
 import "./ChatbotPage.css"
-import { getUserDisease } from "../../utils/user";
-import { useNavigate } from "react-router-dom";
 
 function ContextProvider ({ children }) {
     const [showSaveModal, setShowSaveModal] = useState(false);
@@ -37,7 +36,6 @@ function ChatbotPageInner(){
     const [chatInput, setChatInput] = useState('');
     const [onProgress, setOnProgress] = useState(false);
     const { showSaveModal } = useContext(SaveContext);
-    const navigate = useNavigate();
     const addChat = (role, text) => {
         setChatList(prevChatList => [...prevChatList, {role, parts: [{ text }]}]);
     }
@@ -87,7 +85,6 @@ function ChatbotPageInner(){
         }).catch(err => {
             console.error(err);
             console.log('Access Denied.')
-            navigate('/');
     });
     }, []);
 
