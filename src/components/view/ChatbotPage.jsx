@@ -62,7 +62,8 @@ function ChatbotPageInner(){
     useEffect(()=>{
         var userDisease = '';
         var userHealthInfoToShow = '요리 레시피를 추천해줘.';
-        getUserDisease().then(disease => {
+        const getDisease = confirm('나의 질병 정보를 불러오시겠습니까?');
+        if (getDisease) getUserDisease().then(disease => {
             if (disease) {
                 userDisease = `The recipe must suitable with my health status. This is my disease list in korean, '${disease}'. `;
                 userHealthInfoToShow = `나의 건강상태에 맞는 요리 레시피를 추천해줘. 나는 ${disease}이(가) 있어.`
@@ -84,8 +85,25 @@ function ChatbotPageInner(){
                 }))
         }).catch(err => {
             console.error(err);
-            console.log('Access Denied.')
-    });
+            console.log('Access Denied.');
+        });
+        else {
+            const userHealthInfo = `Recommend me the cuisine recipe that I ask you. ${userDisease}All of your response must be in korean.`;
+            const initialChatList = [
+                { role: 'prompt', parts: [{ text: userHealthInfo }] },
+                { role: 'promptToShow', parts: [{ text: userHealthInfoToShow }] }
+            ]
+            setChatList(initialChatList);
+            startChat(initialChatList
+                .filter(chat => chat.role != 'promptToShow')
+                .map(chat => {
+                    if (chat.role == 'prompt') {
+                        const newChat = { ...chat, role: 'user' };
+                        return newChat;
+                    }
+                    else return chat;
+                }))
+        }
     }, []);
 
     return(

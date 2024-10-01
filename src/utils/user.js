@@ -11,9 +11,9 @@ export const getUserDisease = () => {
         }
     }).then(res => {
         if(res.status >= 200 && res.status < 300){
-            const disease = res.data.diseases;
-            if(Array.isArray(disease)){
-                const strDisease = disease.map(disease => `${disease.name}(${disease.contents})`);
+            const diseaseList = res.data.diseases;
+            if(Array.isArray(diseaseList)){
+                const strDisease = diseaseList.map(disease => `${disease.name}${disease.contents == '모름' ? '' : '('+disease.contents+')'}`);
                 return strDisease.join(', ')
             } else return "";
         }
