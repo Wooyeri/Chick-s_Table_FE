@@ -32,6 +32,7 @@
 }
 
 .scrap-recipe-item {
+    cursor: pointer;
     background-color: #21978B40;
     padding: 10px;
     border-radius: 5px;

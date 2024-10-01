@@ -1,9 +1,14 @@
+import SavedSidebar from '@/components/saved/SavedSidebar';
+import SavedDetails from '@/components/saved/SavedDetails';
 import './SavedRecipes.css';
+import { useState } from 'react';
 
 const SavedRecipes = () => {
+  const [recipeId, setRecipeId] = useState();
   return (
     <div>
-      <h1>저장된 레시피</h1>
+      <SavedSidebar setRecipeId={setRecipeId} />
+      <SavedDetails recipeId={recipeId} />
     </div>
   );
 };

@@ -5,19 +5,19 @@ import PropTypes from 'prop-types'
 
 import "./SavedDetails.css";
 
-export default function SavedDetails ({ id }){
+export default function SavedDetails ({ recipeId }){
     const [contents, setContents] = useState('');
     useEffect(() => {
-        getSavedRecipeDetails.then(res => {
+        if(recipeId) getSavedRecipeDetails(recipeId).then(res => {
             setContents(res.contents);
         })
-    }, [id])
+    }, [recipeId])
     return(
         <div className="saved-details-container">
-            <div className="saved-details"><ReactMarkdown>{contents}</ReactMarkdown></div>
+            {contents && <div className="saved-details"><ReactMarkdown>{contents}</ReactMarkdown></div>}
         </div>
     )
 }
 SavedDetails.propTypes = {
-    id: PropTypes.number
+    recipeId: PropTypes.number
 }
