@@ -1,0 +1,12 @@
+.saved-recipes-page {
+    display: flex;
+    flex-direction: row;
+    min-height: 100%;
+    width: 100%;
+}
+.saved-recipes-page .saved-sidebar-container {
+    width: 25%;
+}
+.saved-recipes-page .saved-details-container {
+    width: 75%;
+}

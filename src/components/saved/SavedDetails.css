@@ -5,10 +5,11 @@
 }
 
 .saved-details {
-    width: fit-content;
     border: 1px solid rgba(200, 214, 213, 0.8);
     border-radius: 5px;
+    box-sizing: border-box;
     max-width: 75%;
     word-break: break-all;
     padding: 1rem 2rem;
+    margin: 2rem;
 }

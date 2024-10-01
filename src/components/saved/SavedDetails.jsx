@@ -13,8 +13,8 @@ export default function SavedDetails ({ recipeId }){
         })
     }, [recipeId])
     return(
-        <div className="saved-details-container">
-            {contents && <div className="saved-details"><ReactMarkdown>{contents}</ReactMarkdown></div>}
+        <div className="saved-details">
+            {contents && <div className="saved-details-box"><ReactMarkdown>{contents}</ReactMarkdown></div>}
         </div>
     )
 }

@@ -21,11 +21,11 @@ const SavedSidebar = ({ setRecipeId }) => {
       setSavedRecipes(savedList)
       setError(''); // 에러가 없으면 에러 메시지를 빈 문자열로 설정
     })
-    .catch(err => {
-      setError('레시피를 불러오는 도중 문제가 발생했습니다: ' + err); // 에러 발생 시 메시지 설정
-      setSavedRecipes([]); // 에러 발생 시 빈 배열로 설정
-    })
-    
+      .catch(err => {
+        setError('레시피를 불러오는 도중 문제가 발생했습니다: ' + err); // 에러 발생 시 메시지 설정
+        setSavedRecipes([]); // 에러 발생 시 빈 배열로 설정
+      })
+
   }, []);
 
   // 스크랩 삭제 함수
@@ -52,27 +52,27 @@ const SavedSidebar = ({ setRecipeId }) => {
 
   return (
     <div className="scrap-modal-content">
-      <h3>&quot;{nickname}&quot; 님의 저장한 레시피 목록</h3>
-        {/* 에러가 있을 때만 에러 메시지를 표시 */}
-        {error && (
-          <p style={{ color: 'red', fontSize: '0.8rem' }}>{error}</p>
-        )}
+      <h3>&quot;{nickname}&quot; 님의<br />저장한 레시피 목록</h3>
+      {/* 에러가 있을 때만 에러 메시지를 표시 */}
+      {error && (
+        <p style={{ color: 'red', fontSize: '0.8rem' }}>{error}</p>
+      )}
 
-        <div className="scrap-recipe-list">
-          {savedRecipes && savedRecipes.length > 0 ? (
-            savedRecipes.map((recipe, index) => (
-              <div key={index} className="scrap-recipe-item" onClick={() => setRecipeId(recipe.id)}>
-                {recipe.title}
-                <button className="scrap-delete-recipe" onClick={() => handleDeleteClick(recipe.id, recipe.title)}>
-                  <img src={xImage} alt="x 아이콘" style={{ width: '10px', height: '10px' }} />
-                </button>
-              </div>
-            ))
-          ) : (
-            !error && <p>저장된 레시피가 없습니다.</p>  // 데이터가 없을 경우 메시지 표시
-          )}
-        </div>
+      <div className="scrap-recipe-list">
+        {savedRecipes && savedRecipes.length > 0 ? (
+          savedRecipes.map((recipe, index) => (
+            <div key={index} className="scrap-recipe-item" onClick={() => setRecipeId(recipe.id)}>
+              <div>{recipe.title}</div>
+              <button className="scrap-delete-recipe" onClick={() => handleDeleteClick(recipe.id, recipe.title)}>
+                <img src={xImage} alt="x 아이콘" style={{ width: '10px', height: '10px' }} />
+              </button>
+            </div>
+          ))
+        ) : (
+          !error && <p>저장된 레시피가 없습니다.</p>  // 데이터가 없을 경우 메시지 표시
+        )}
       </div>
+    </div>
   );
 };
 SavedSidebar.propTypes = {

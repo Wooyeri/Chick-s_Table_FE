@@ -12,7 +12,7 @@ export default function SaveModal() {
     const [contentInput, setContentInput] = useState(saveModalContent);
     const handleSubmit = (e) => {
         e.preventDefault();
-        saveRecipe(titleInput, contentInput).then(res => {
+        saveRecipe(titleInput.slice(0, 30), contentInput).then(res => {
             if(res.status >= 200 && res.status < 300){
                 alert("저장 성공!");
                 setShowSaveModal(false);
