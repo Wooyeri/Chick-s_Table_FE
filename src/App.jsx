@@ -10,6 +10,7 @@ import ChangePassword from "./components/view/ChangePasswordPage";
 import ChatbotPage from "./components/view/ChatbotPage";
 import MyPage from './mypage/MyPage'; 
 import InformationEdit from './InformationEdit.jsx/InformationEdit';
+import Saved from "./components/view/SavedRecipes";
 
 function App() {
   return (
@@ -41,8 +42,8 @@ function App() {
           {/* // http://localhost:3000/mypage/edit */}
           <Route path="/mypage/edit" element={<InformationEdit />}></Route>
 
-          {/* // http://localhost:3000/savedrecipes */}
-          {/* <Route path="/savedrecipes" element={<Saved />}></Route> */}
+          {/* // http://localhost:3000/saved-recipes */}
+          <Route path="/saved-recipes" element={<Saved />}></Route>
 
           {/* // http://localhost:3000/change-password */}
           <Route path="/change-password" element={<ChangePassword />}></Route>
