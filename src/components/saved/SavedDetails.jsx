@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import PropTypes from 'prop-types'
+import ReactMarkdown from 'react-markdown';
 import { getSavedRecipeDetails } from "@/utils/save";
+import PropTypes from 'prop-types'
 
 import "./SavedDetails.css";
 
@@ -13,7 +14,7 @@ export default function SavedDetails ({ id }){
     }, [id])
     return(
         <div className="saved-details-container">
-            <div className="saved-details">{contents}</div>
+            <div className="saved-details"><ReactMarkdown>{contents}</ReactMarkdown></div>
         </div>
     )
 }
