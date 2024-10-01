@@ -85,7 +85,7 @@ function ChatbotPageInner(){
                     else return chat;
                 }))
         }).catch(err => {
-            console.err(err);
+            console.error(err);
             console.log('Access Denied.')
             navigate('/');
     });
