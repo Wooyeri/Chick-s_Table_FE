@@ -13,7 +13,8 @@ export const getUserDisease = () => {
         if(res.status >= 200 && res.status < 300){
             const disease = res.data.diseases;
             if(Array.isArray(disease)){
-                return disease.join(", ")
+                const strDisease = disease.map(disease => `${disease.name}(${disease.contents})`);
+                return strDisease.join(', ')
             } else return "";
         }
     })
