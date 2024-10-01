@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { SaveContext } from "@/common/saveContext";
 
 import "./SaveModal.css"
-import check from "@/assets/images/check.svg";
 import cancel from "@/assets/images/cancel.svg";
 import { saveRecipe } from "../../utils/save";
 
@@ -33,14 +32,14 @@ export default function SaveModal() {
         <div className="chat-save-modal-back">
             <div className="chat-save-modal">
                 <div className="close btn-container"><button onClick={() => setShowSaveModal(false)}><img src={cancel} alt="취소 버튼" /></button></div>
-                <h2>내 레시피로 저장하기</h2>
-                <form onSubmit={handleSubmit}>
+                <h2 className="chat-save-title">내 레시피로 저장하기</h2>
+                <form className="form-container" onSubmit={handleSubmit}>
                     <div className="title">
-                        <label>이름:</label>
-                        <input type="text" value={titleInput} onChange={(e) => {setTitleInput(e.target.value)}}></input>
+                        <label className="title-name">제목:</label>
+                        <input className="title-input" type="text" value={titleInput} onChange={(e) => {setTitleInput(e.target.value)}}></input>
                     </div>
                     <div className="save-modal-content"><textarea value={contentInput} onChange={(e) => {setContentInput(e.target.value)}}></textarea></div>
-                    <div className="save btn-container"><button type="submit"><img src={check} alt="확인 버튼" /></button></div>
+                    <div className="save-btn-container"><button type="submit" className="save-btn">저장</button></div>
                 </form>
             </div>
         </div>

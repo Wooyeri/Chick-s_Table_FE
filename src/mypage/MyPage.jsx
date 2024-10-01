@@ -70,7 +70,7 @@ const MyPage = () => {
           <p><strong>Email :</strong> {userData.email}</p>
           <p><strong>Nickname :</strong> {userData.nickname}</p>
           <p>
-            <strong style={{ display: 'inline-block', verticalAlign: 'top' }}>Diseases :</strong>
+            <strong className="disease-name" style={{ display: 'inline-block', verticalAlign: 'top' }}>Diseases :</strong>
             <span className="profile-disease-list">
               {userData.diseases.map((d, index) => (
                 <span key={index} className="profile-disease-item">
@@ -86,7 +86,7 @@ const MyPage = () => {
       </div>
 
       <button className="saved-chat-button" onClick={openModal}>
-        저장한 레시피 목록 보러 가기 <img src={listIcon} alt="List Icon" style={{ width: '12px', height: '15px', verticalAlign: '-2px', marginLeft: '5px'}} />
+        저장한 레시피 목록 보러 가기 <img src={listIcon} alt="List Icon" style={{ width: '14px', height: '18px', verticalAlign: '-2px', marginLeft: '5px'}} />
       </button>
 
       {isModalOpen && <RecipeModal onClose={closeModal} nickname={userData.nickname} />}
