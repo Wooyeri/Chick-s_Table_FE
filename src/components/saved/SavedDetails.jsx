@@ -19,5 +19,6 @@ export default function SavedDetails ({ recipeId }){
     )
 }
 SavedDetails.propTypes = {
-    recipeId: PropTypes.number
+    recipeId: PropTypes.number,
+    height: PropTypes.number
 }

@@ -6,7 +6,7 @@ import { getUserNickname, getUserSavedList } from '@/utils/user';
 import './SavedSidebar.css'; // 고유 이름을 사용한 CSS 추가
 import xImage from '@/assets/x.png';
 
-const SavedSidebar = ({ setRecipeId }) => {
+const SavedSidebar = ({ setRecipeId, height }) => {
   const [nickname, setNickname] = useState('');
   const [savedRecipes, setSavedRecipes] = useState([]);
   const [error, setError] = useState(''); // 에러 상태 추가
@@ -51,14 +51,14 @@ const SavedSidebar = ({ setRecipeId }) => {
   };
 
   return (
-    <div className="scrap-modal-content">
+    <div className="scrap-modal-content" style={{height: height}}>
       <h3>&quot;{nickname}&quot; 님의<br />저장한 레시피 목록</h3>
       {/* 에러가 있을 때만 에러 메시지를 표시 */}
       {error && (
         <p style={{ color: 'red', fontSize: '0.8rem' }}>{error}</p>
       )}
 
-      <div className="scrap-recipe-list">
+      <div className="scrap-recipe-list" >
         {savedRecipes && savedRecipes.length > 0 ? (
           savedRecipes.map((recipe, index) => (
             <div key={index} className="scrap-recipe-item" onClick={() => setRecipeId(recipe.id)}>
@@ -77,6 +77,7 @@ const SavedSidebar = ({ setRecipeId }) => {
 };
 SavedSidebar.propTypes = {
   setRecipeId: PropTypes.func,
+  height: PropTypes.number
 }
 
 export default SavedSidebar;
