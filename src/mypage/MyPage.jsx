@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './MyPage.css';
 import pencilIcon from '../assets/pencil-icon.png';
 import listIcon from '../assets/list.png';
+import placeholder from '@/assets/images/person.svg';
 
 const MyPage = () => {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const MyPage = () => {
             id: user.id,
             email: user.email,
             nickname: user.nickname,
-            image: user.profilePath || 'https://via.placeholder.com/120', // profilePath로 설정
+            image: user.profilePath || placeholder,
             diseases: user.diseases || [] // diseases 배열 처리
           });
         })
@@ -51,11 +52,12 @@ const MyPage = () => {
       <div className='mypage-container'>
         <h2>마이페이지</h2>
         <div className="profile-section">
-          <img
-            src={userData.image}
-            alt="프로필"
-            className="profile-pic"
-          />
+          <div className="profile-picture">
+            <img
+              src={userData.image}
+              alt="프로필"
+            />
+          </div>
           <div className="profile-info">
             <p><strong>Id :</strong> {userData.id}</p>
             <p><strong>Email :</strong> {userData.email}</p>
