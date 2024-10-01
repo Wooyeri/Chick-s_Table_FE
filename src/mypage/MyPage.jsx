@@ -62,7 +62,7 @@ const MyPage = () => {
         <img 
           src={userData.image}  
           alt="프로필" 
-          className="profile-image"
+          className="profile-pic"
         />
         <div className="profile-info">
           <p><strong>Id :</strong> {userData.id}</p>
@@ -73,14 +73,14 @@ const MyPage = () => {
             <span className="profile-disease-list">
               {userData.diseases.map((d, index) => (
                 <span key={index} className="profile-disease-item">
-                  {d.name} {d.contents && `(${d.contents})`} {/* details -> contents로 수정 */}
+                  {d.name} {d.contents && `(${d.contents})`}
                 </span>
               ))}
             </span>
           </p>
         </div>
         <button className="edit-button" onClick={() => navigate('/mypage/edit')}>
-          <img src={pencilIcon} alt="Edit" style={{ width: '20px', height: '20px' }} />
+          <img src={pencilIcon} alt="Edit" style={{ width: '20px', height: '20px', marginRight: '10px' }} />
         </button>
       </div>
 

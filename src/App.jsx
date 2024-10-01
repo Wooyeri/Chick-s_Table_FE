@@ -38,7 +38,7 @@ function App() {
           {/* // http://localhost:3000/mypage */}
           <Route path="/mypage" element={<MyPage />}></Route> 
 
-          {/* // http://localhost:3000/information-edit */}
+          {/* // http://localhost:3000/mypage/edit */}
           <Route path="/mypage/edit" element={<InformationEdit />}></Route>
 
           {/* // http://localhost:3000/savedrecipes */}

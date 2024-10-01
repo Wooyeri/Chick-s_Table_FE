@@ -1,4 +1,4 @@
-.modal-overlay {
+.scrap-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -8,51 +8,59 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .modal-content {
+}
+
+.scrap-modal-content {
     position: relative;
     background: white;
-    padding: 20px 50px;
+    padding: 30px 50px;
     border-radius: 10px;
     max-width: 400px;
-    min-width: 500px; /* 최소 너비를 600px로 설정 */
+    min-width: 500px;
     width: 60%;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 40px;
     border: 1px solid #21978B;
 }
- 
 
-  .recipe-list {
+.scrap-recipe-list {
     display: flex;
     flex-wrap: wrap;
     gap: 35px;
-  }
-  
-  .recipe-item {
+}
+
+.scrap-recipe-item {
     background-color: #21978B40;
     padding: 10px;
     border-radius: 5px;
     width: 120px;
     height: 120px;
     display: flex;
-    border: 1px solid black; /* 검정 테두리 추가 */
-    align-items: center; /* 수직 가운데 정렬 */
-    justify-content: center; /* 수평 가운데 정렬 */
+    border: 1px solid black;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    text-align: center; /* 텍스트 수평 가운데 정렬 */
-  }
-  
-  
-  .delete-recipe {
+    text-align: center;
+}
+
+.scrap-delete-recipe {
     position: absolute;
     top: 5px;
-    right: 5px;
+    right: 10px;
     background: none;
     border: none;
     cursor: pointer;
-  }
-  
+}
+.scrap-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0; /* 버튼 패딩 제거 */
+    width: auto; /* 너비 자동으로 설정 */
+}

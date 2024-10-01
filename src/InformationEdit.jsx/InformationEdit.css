@@ -1,4 +1,4 @@
-.info-edit-container {
+.info-edit-container-custom {
   border: 1px solid #dddddd;
   border-radius: 10px;
   padding: 20px;
@@ -6,34 +6,34 @@
   margin: 20px auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
   border: 1px solid #21978B;
 }
 
-h2 {
+.h2-custom {
   text-align: left;
   font-size: 1.3rem;
   margin-bottom: 20px;
 }
 
-.profile-section {
+.profile-section-custom {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
 }
 
-.image-container {
+.image-container-custom {
   position: relative;
 }
 
-.profile-image {
+.profile-image-custom {
   width: 120px;
   height: 150px;
   border-radius: 10px;
 }
 
-.edit-profile {
+.edit-profile-custom {
   position: absolute;
   top: 5px;
   right: 5px;
@@ -43,27 +43,27 @@ h2 {
   font-size: 1rem;
 }
 
-.input-section {
+.input-section-custom {
   display: flex;
   flex-direction: column;
   gap: 10px;
   flex-grow: 1;
 }
 
-.input-row {
+.input-row-custom {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 10px;  /* 레이블과 입력 필드 사이 간격 */
 }
 
-.input-row label {
+.input-row-custom label {
   font-weight: bold;
   width: 100px;  /* 레이블의 고정 너비 */
 }
 
 /* 공통 스타일 */
-.input-row input {
+.input-row-custom input {
   padding:10px;
   border: 1px solid #b1afaf;
   border-radius: 5px;
@@ -73,22 +73,21 @@ h2 {
 }
 
 /* Id와 Email 필드 - 수정 불가능하게 하고 스타일을 진하게 */
-.input-row input[disabled] {
+.input-row-custom input[disabled] {
   background-color: #f0f0f0;  /* 조금 더 밝은 회색 배경 */
   color: #8b8b8b;  /* 더 진한 회색 글자 */
   font-weight: bold;  /* 글자 더 진하게 */
 }
 
 /* 닉네임 필드 - 수정 가능하고 밝은 스타일 */
-.input-nickname {
+.input-nickname-custom {
   background-color: white;  /* 밝은 배경 */
   color: #000000;  /* 일반 글자 색상 */
   border: 1px solid #cccccc;  /* 밝은 테두리 */
   font-weight: normal;  /* 일반 글자 굵기 */
 }
 
-
-.disease-section {
+.disease-section-custom {
   border: 1px solid #000000;
   border-radius: 10px;
   padding: 20px;
@@ -96,12 +95,12 @@ h2 {
   margin-top: 10px;
 }
 
-.disease-title {
-  margin-bottom: -40px; /* 제목을 박스와 겹치지 않도록 조정 */
+.disease-title-custom {
+  margin-bottom: -20px; /* 제목을 박스와 겹치지 않도록 조정 */
   padding: 0 10px; /* 제목 좌우 여백 추가 */
 }
 
-.disease-list {
+.disease-list-custom {
   display: flex;
   align-items: center;  /* 플러스 버튼과 질병 항목을 수평 가운데로 정렬 */
   gap: 20px;
@@ -109,7 +108,7 @@ h2 {
   justify-content: flex-start;
 }
 
-.disease-item {
+.disease-item-custom {
   position: relative; /* 삭제 버튼 위치를 위한 설정 */
   display: flex;
   flex-direction: column;
@@ -126,7 +125,7 @@ h2 {
   border: 1px solid black;
 }
 
-.disease-item button {
+.disease-item-custom button {
   position: absolute;
   top: 5px;
   right: 5px;
@@ -135,16 +134,17 @@ h2 {
   cursor: pointer;
 }
 
-.add-disease-container {
+.add-disease-container-custom {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100px; /* 질병 항목과 같은 폭 설정 */
   height: 100px; /* 질병 항목과 같은 높이 설정 */
-
+  margin-right: 40px;
+  
 }
 
-.add-disease {
+.add-disease-custom {
   background: none;
   border: 1px solid #ffffff2c;
   border-radius: 50%;
@@ -156,7 +156,7 @@ h2 {
   cursor: pointer;
 }
 
-.save-button {
+.save-button-custom {
   padding: 10px 20px;
   background-color: #21978B;
   border: none;
@@ -168,6 +168,6 @@ h2 {
   align-self: flex-end;
 }
 
-.save-button:hover {
+.save-button-custom:hover {
   background-color: #21978B;
 }

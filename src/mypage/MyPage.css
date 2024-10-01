@@ -26,12 +26,12 @@
     gap: 20px; /* 이미지와 텍스트 사이 간격 */
   }
 
-  .profile-image {
+  .profile-pic {
     top: 0;
     left: 0;
     width: 120px; /* 이미지 크기 더 크게 */
     height: 150px;
-    border-radius: 50%;
+    border-radius: 10%;
     align-self: flex-start;
   }
   

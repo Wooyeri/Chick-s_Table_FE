@@ -77,15 +77,15 @@ const DiseaseSelectModal = ({ onClose, onSubmit }) => {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <button className="modal-close" onClick={onClose}>
+    <div className="modal-overlay-custom show">
+      <div className="modal-content-custom">
+        <button className="modal-close-custom" onClick={onClose}>
           <img src={xImage} alt="x 아이콘" style={{ width: '15px', height: '15px' }} />
         </button>
         <h3>질병 선택</h3>
 
         {selectedDisease && (
-          <div className="blood-sugar-input">
+          <div className="blood-sugar-input-custom">
             <label>{selectedDisease}</label>
             {["고혈압", "저혈압"].includes(selectedDisease) ? (
               <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
@@ -94,7 +94,7 @@ const DiseaseSelectModal = ({ onClose, onSubmit }) => {
                   value={bloodSugar.first}
                   onChange={(e) => handleInputChange(e.target.value, "first")}
                   placeholder="이완기"
-                  style={{ width: "55px", textAlign: "center" }}
+                  className="blood-sugar-input-custom-input" /* 적용할 클래스 */
                 />
                 <span>/</span>
                 <input
@@ -102,7 +102,7 @@ const DiseaseSelectModal = ({ onClose, onSubmit }) => {
                   value={bloodSugar.second}
                   onChange={(e) => handleInputChange(e.target.value, "second")}
                   placeholder="수축기"
-                  style={{ width: "55px", textAlign: "center" }}
+                  className="blood-sugar-input-custom-input" /* 적용할 클래스 */
                 />
               </div>
             ) : (
@@ -111,10 +111,10 @@ const DiseaseSelectModal = ({ onClose, onSubmit }) => {
                 value={bloodSugar.first}
                 onChange={(e) => handleInputChange(e.target.value, "first")}
                 placeholder={selectedDisease === "알레르기" ? "알레르기 종류" : "수치 입력"}
-                style={{ width: "100px", marginRight: "10px" }}
+                className="blood-sugar-input-custom-input" /* 적용할 클래스 */
               />
             )}
-            <label style={{ marginLeft: "25px" }}>모름</label>
+            <label className="label-checkbox">모름</label>
             <input
               type="checkbox"
               checked={unknown}
@@ -131,34 +131,34 @@ const DiseaseSelectModal = ({ onClose, onSubmit }) => {
 
         <p style={{ marginTop: "0px", marginBottom: "10px" }}>{comment}</p>
 
-        <div className="disease-options">
+        <div className="disease-options-custom">
           <button
-            className={`disease-button ${selectedDisease === "당뇨" ? "selected" : ""}`}
+            className={`disease-button-custom ${selectedDisease === "당뇨" ? "selected-custom" : ""}`}
             onClick={() => handleSelect("당뇨")}
           >
             당뇨
           </button>
           <button
-            className={`disease-button ${selectedDisease === "고혈압" ? "selected" : ""}`}
+            className={`disease-button-custom ${selectedDisease === "고혈압" ? "selected-custom" : ""}`}
             onClick={() => handleSelect("고혈압")}
           >
             고혈압
           </button>
           <button
-            className={`disease-button ${selectedDisease === "알레르기" ? "selected" : ""}`}
+            className={`disease-button-custom ${selectedDisease === "알레르기" ? "selected-custom" : ""}`}
             onClick={() => handleSelect("알레르기")}
           >
             알레르기
           </button>
           <button
-            className={`disease-button ${selectedDisease === "저혈압" ? "selected" : ""}`}
+            className={`disease-button-custom ${selectedDisease === "저혈압" ? "selected-custom" : ""}`}
             onClick={() => handleSelect("저혈압")}
           >
             저혈압
           </button>
         </div>
 
-        <button className="confirm-button" onClick={handleSubmit}>
+        <button className="confirm-button-custom" onClick={handleSubmit}>
           선택
         </button>
       </div>

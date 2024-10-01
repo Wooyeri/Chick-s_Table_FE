@@ -19,7 +19,6 @@ const InformationEdit = () => {
   const [file, setFile] = useState(null);
 
   useEffect(() => {
-    // 로컬 스토리지에서 유저 정보를 가져오기
     const userId = localStorage.getItem('username');  // username으로 변경
     const token = localStorage.getItem('access_token');  // token 대신 access_token으로 변경
 
@@ -99,7 +98,6 @@ const InformationEdit = () => {
         }
       });
 
-      // 저장 완료 후 마이페이지로 이동
       navigate("/mypage", { state: { nickname, diseases, image: selectedImage } });
 
     } catch (error) {
@@ -108,16 +106,16 @@ const InformationEdit = () => {
   };
 
   return (
-    <div className="info-edit-container">
-      <h2>정보 수정</h2>
-      <div className="profile-section">
-        <div className="image-container">
+    <div className="info-edit-container-custom">
+      <h2 className="h2-custom">정보 수정</h2>
+      <div className="profile-section-custom">
+        <div className="image-container-custom">
           <img
             src={selectedImage || "https://via.placeholder.com/120"}
             alt="프로필"
-            className="profile-image"
+            className="profile-image-custom"
           />
-          <button className="edit-profile" onClick={openFileSelector}>
+          <button className="edit-profile-custom" onClick={openFileSelector}>
             <img src={pencilIcon} alt="Edit Profile" style={{ width: '20px', height: '20px' }} />
           </button>
           <input
@@ -128,16 +126,16 @@ const InformationEdit = () => {
             onChange={handleImageChange}
           />
         </div>
-        <div className="input-section">
-          <div className="input-row">
+        <div className="input-section-custom">
+          <div className="input-row-custom">
             <label>Id</label>
             <input type="text" value={id} disabled />  {/* ID 입력 필드 복원 */}
           </div>
-          <div className="input-row">
+          <div className="input-row-custom">
             <label>Email</label>
             <input type="email" value={email} disabled />  {/* Email 입력 필드 복원 */}
           </div>
-          <div className="input-row">
+          <div className="input-row-custom">
             <label>Nickname</label>
             <input
               type="text"
@@ -148,14 +146,14 @@ const InformationEdit = () => {
         </div>
       </div>
 
-      <div className="disease-title">
+      <div className="disease-title-custom">
         <h3>질병 목록</h3>
       </div>
 
-      <div className="disease-section">
-        <div className="disease-list">
+      <div className="disease-section-custom">
+        <div className="disease-list-custom">
           {diseases.map((disease, index) => (
-            <div className="disease-item" key={index}>
+            <div className="disease-item-custom" key={index}>
               <span style={{ fontWeight: 'bold' }}>{disease.name}</span>
               <span>{disease.contents}</span> {/* 이 부분을 추가하여 질병 상세 정보 표시 */}
               <button onClick={() => removeDisease(index)}>
@@ -163,15 +161,15 @@ const InformationEdit = () => {
               </button>
             </div>
           ))}
-          <div className="add-disease-container">
-            <button className="add-disease" onClick={() => setIsModalOpen(true)}>
-              <img src={plusIcon} alt="Plus Icon" style={{ width: '50px', height: '50px' }} />
+          <div className="add-disease-container-custom">
+            <button className="add-disease-custom" onClick={() => setIsModalOpen(true)}>
+              <img src={plusIcon} alt="Plus Icon" style={{ width: '50px', height: '50px', marginLeft: '75px'}} />
             </button>
           </div>
         </div>
       </div>
 
-      <button className="save-button" onClick={handleSave}>
+      <button className="save-button-custom" onClick={handleSave}>
         저장
       </button>
 
