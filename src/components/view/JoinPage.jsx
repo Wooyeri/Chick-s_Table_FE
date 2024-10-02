@@ -50,7 +50,7 @@ const JoinPage = () => {
         });
 
         // 서버로부터의 응답이 성공적일 경우 처리
-        if (res.status === 201) {
+        if (res.status >= 200 && res.status < 300) {
           console.log("회원가입 성공"); // 성공 메시지 출력 (디버깅 목적)
           alert("회원가입 성공!"); // 회원가입 성공 알림 표시
 
@@ -63,7 +63,7 @@ const JoinPage = () => {
     } catch (err) {
       // 예외가 발생했을 경우 오류 메시지 출력 및 알림 표시
       console.error("[join]", err); // 콘솔에 오류 메시지 출력
-      alert(err.response.data); // 사용자에게 오류 메시지 표시
+      alert("회원가입에 실패했습니다. 입력을 다시 확인해주세요."); // 사용자에게 오류 메시지 표시
     }
   };
 

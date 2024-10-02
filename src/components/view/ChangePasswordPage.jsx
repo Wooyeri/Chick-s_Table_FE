@@ -9,6 +9,7 @@ const ChangePasswordPage = () => {
   const [email, setEmail] = useState(""); // 이메일 상태 변수
   const [password, setPassword] = useState(""); // 비밀번호 상태 변수
   const [newPassword, setNewPassword] = useState(""); // 비밀번호 확인 상태 변수
+  const [confirmNewPassword, setConfirmNewPassword] = useState(""); // 비밀번호 확인 상태 변수
   const navigate = useNavigate(); // 리다이렉트를 위해 useNavigate 훅 사용
 
   // 컴포넌트가 마운트될 때 토큰 확인
@@ -26,6 +27,11 @@ const ChangePasswordPage = () => {
     event.preventDefault(); // 페이지 새로고침 방지
     const BASE_URL = import.meta.env.VITE_API_URL;
 
+    if (newPassword != confirmNewPassword) {
+      alert("새로운 비밀번호가 일치하지 않습니다.");
+      return;
+    }
+
     try {
       // 서버에 비밀번호 변경 요청
       const token = localStorage.getItem("access_token"); // 로컬 스토리지에서 토큰 가져오기
@@ -41,7 +47,7 @@ const ChangePasswordPage = () => {
       });
 
       // 서버 응답이 성공적일 경우 처리
-      if (res.status === 200) {
+      if (res.status >= 200 && res.status < 300) {
         alert("비밀번호 변경이 성공적으로 완료되었습니다.");
         navigate("/"); // 메인 페이지로 리다이렉트
       } else {
@@ -93,6 +99,18 @@ const ChangePasswordPage = () => {
             required // 필수 입력 필드로 지정
             value={newPassword} // 상태 변수와 연결
             onChange={(e) => setNewPassword(e.target.value)} // 비밀번호 확인 상태 업데이트
+          />
+        </div>
+
+        {/* 비밀번호 확인 입력 필드 */}
+        <div className="input-field">
+          <label>새로운 비밀번호 확인</label>
+          <input
+            type="password" // 비밀번호 확인 입력 필드
+            placeholder="새로운 비밀번호 확인" // 필드에 보일 안내 텍스트
+            required // 필수 입력 필드로 지정
+            value={confirmNewPassword} // 상태 변수와 연결
+            onChange={(e) => setConfirmNewPassword(e.target.value)} // 비밀번호 확인 상태 업데이트
           />
         </div>
 

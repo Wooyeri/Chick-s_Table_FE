@@ -26,7 +26,7 @@ const LoginPage = () => {
       });
 
       // 응답 상태가 성공(200)일 경우 처리
-      if (res.status === 200) {
+      if (res.status >= 200 && res.status < 300) {
         const token = res.headers["token"];
         const returnedUsername = res.headers["id"];
 
@@ -44,8 +44,8 @@ const LoginPage = () => {
         alert("로그인에 실패하였습니다."); 
       }
     } catch (err) {
-      console.error("[login]", err); 
-      alert(err.response.data); 
+      console.error("[login]", err);
+      alert("로그인에 실패하였습니다."); 
     }
   };
 
