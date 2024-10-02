@@ -27,6 +27,15 @@ const ChangePasswordPage = () => {
     event.preventDefault(); // 페이지 새로고침 방지
     const BASE_URL = import.meta.env.VITE_API_URL;
 
+    if(newPassword.includes(' ') || password.includes(' ') || email.includes(' ') || confirmNewPassword.includes(' ')){
+      setNewPassword(newPassword.replace(/\s+/g, ''));
+      setPassword(password.replace(/\s+/g, ''))
+      setEmail(email.replace(/\s+/g, ''))
+      setConfirmNewPassword(confirmNewPassword.replace(/\s+/g, ''))
+      alert('공백 문자는 입력할 수 없습니다.')
+      return;
+    }
+
     if (newPassword != confirmNewPassword) {
       alert("새로운 비밀번호가 일치하지 않습니다.");
       return;

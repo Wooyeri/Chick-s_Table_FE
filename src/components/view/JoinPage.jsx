@@ -29,6 +29,12 @@ const JoinPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault(); // 폼 제출 시 페이지가 새로고침 되는 것을 방지
 
+    if(formData.id.includes(' ') || formData.password.includes(' ') || formData.passwordConfirm.includes(' ') || formData.email.includes(' ')){
+      setFormData(prev => ({...prev, id: formData.id.replace(/\s+/g, ''), password: formData.password.replace(/\s+/g, ''), passwordConfirm: formData.passwordConfirm.replace(/\s+/g, ''), email: formData.email.replace(/\s+/g, '')}))
+      alert('공백 문자는 입력할 수 없습니다.')
+      return;
+    }
+
     try {
       // 비밀번호와 비밀번호 확인이 일치하는지 확인
       if (formData.password !== formData.passwordConfirm) {

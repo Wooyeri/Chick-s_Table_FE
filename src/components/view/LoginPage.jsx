@@ -9,7 +9,14 @@ const LoginPage = () => {
   const navigate = useNavigate(); // 페이지 이동을 위한 훅 추가
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
+
+    if(username.includes(' ') || password.includes(' ')){
+      setUsername(username.replace(/\s+/g, ''));
+      setPassword(password.replace(/\s+/g, ''));
+      alert('공백 문자는 입력할 수 없습니다.')
+      return;
+    }
     
     try {
       // 서버로 로그인 요청 전송
