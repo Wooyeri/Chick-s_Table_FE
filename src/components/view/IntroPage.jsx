@@ -30,7 +30,7 @@ const Intro = () => {
     <div className='intro-page'>
       <div className='text-container'>
         <div className='main-title'>
-          당신의 <span className='bold'>식탁</span>
+          당신의 <span className='bold'>식탁</span>을
           <span className='line-break'></span>
           <span className='bold'>건강</span>하게 지켜보세요!
         </div>
