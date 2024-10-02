@@ -159,8 +159,8 @@ const DiseaseSelectModal = ({ onClose, onSubmit }) => {
           </button>
         </div>
         
-        <div class="confirm-button-container" onClick={handleSubmit}>
-          <button class="confirm-button-custom">저장</button>
+        <div className="confirm-button-container" onClick={handleSubmit}>
+          <button className="confirm-button-custom">저장</button>
         </div>
       </div>
     </div>
