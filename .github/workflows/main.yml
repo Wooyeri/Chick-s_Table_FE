@@ -29,7 +29,7 @@ jobs:
       
       - name: Env variables
         run: |
-          echo "VITE_MODE=Prod Mode" >> .env.production
+          echo "VITE_MODE=Prod VITE_MODE" >> .env.production
           echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> .env.production
           echo "VITE_GEMINI_API_KEY=${{ secrets.VITE_GEMINI_API_KEY }}" >> .env.production
           

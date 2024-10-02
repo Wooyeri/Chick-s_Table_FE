@@ -26,10 +26,21 @@
   position: relative;
 }
 
-.profile-image-custom {
+.profile-picture {
   width: 120px;
-  height: 150px;
-  border-radius: 10px;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e7e7e7;
+  border-radius: 5px;
+}
+.profile-image-custom {
+  max-width: 120px;
+  max-height: 160px;
+  min-width: 2rem;
+  min-height: 2rem;
+  border-radius: 6px;
 }
 
 .edit-profile-custom {

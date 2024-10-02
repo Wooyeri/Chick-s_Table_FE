@@ -13,7 +13,7 @@ const MyPage = () => {
     email: '',
     nickname: '',
     diseases: [],
-    image: 'https://via.placeholder.com/120' // 기본 프로필 사진
+    image: '' // 기본 프로필 사진
   });
 
   useEffect(() => {

@@ -6,6 +6,7 @@ import "./InformationEdit.css";
 import pencilIcon from '../assets/pencil-icon.png';
 import plusIcon from '../assets/icons8-plus-128.png';
 import xImage from '../assets/x.png';
+import placeholder from '@/assets/images/person.svg';
 
 const InformationEdit = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const InformationEdit = () => {
       setEmail(email);
       setNickname(nickname);
       setDiseases(diseases || []);
-      setSelectedImage(image || "https://via.placeholder.com/120");
+      setSelectedImage(image || placeholder);
     } else if (userId && token) {
       const fetchUserInfo = async () => {
         const BASE_URL = import.meta.env.VITE_API_URL;
@@ -43,7 +44,7 @@ const InformationEdit = () => {
           setEmail(user.email);  // Email 상태 업데이트
           setNickname(user.nickname);
           setDiseases(user.diseases || []);
-          setSelectedImage(user.profilePath || "https://via.placeholder.com/120");
+          setSelectedImage(user.profilePath || "");
         } catch (error) {
           console.error("사용자 정보를 가져오는 데 실패했습니다.", error);
         }
@@ -112,11 +113,13 @@ const InformationEdit = () => {
       <h2 className="h2-custom">정보 수정</h2>
       <div className="profile-section-custom">
         <div className="image-container-custom">
-          <img
-            src={selectedImage || "https://via.placeholder.com/120"}
-            alt="프로필"
-            className="profile-image-custom"
-          />
+          <div className="profile-picture">
+            <img
+              src={selectedImage || placeholder}
+              alt="프로필"
+              className="profile-image-custom"
+            />
+          </div>
           <button className="edit-profile-custom" onClick={openFileSelector}>
             <img src={pencilIcon} alt="Edit Profile" style={{ width: '20px', height: '20px' }} />
           </button>
